@@ -1,0 +1,45 @@
+.circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--color-3);
+  position: relative;
+  transform: scale(1.1);
+  margin: 25px;
+}
+
+.new_cal_circle::after {
+  border-radius: 50%;
+  content: " ";
+  position: absolute;
+  display: block;
+  background-color: var(--color-6);
+  height: 7px;
+  margin-top: -5px;
+  top: 52%;
+  left: 10px;
+  right: 10px;
+  z-index: 9;
+}
+.new_cal_circle::before {
+  border-radius: 50%;
+  content: " ";
+  position: absolute;
+  display: block;
+  background-color: var(--color-6);
+  width: 7px;
+  margin-left: -5px;
+  left: 52%;
+  top: 10px;
+  bottom: 10px;
+  z-index: 9;
+}
+.circle:hover {
+  background-color: var(--color-1);
+}
+.img {
+  width: 50%;
+}
