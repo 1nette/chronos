@@ -1,0 +1,9 @@
+.calendars_box {
+  height: calc(100vh - 60px);
+  padding: 5px;
+  width: 100px;
+  background-color: var(--color-4);
+}
+.calendars_list_box {
+  margin-top: 50px;
+}
