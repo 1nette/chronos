@@ -12,8 +12,8 @@ const ArrowRight = ({ index, setIndex }) => {
     }
 
     return (
-        <div className='arrow_side'>
-            <div className='arrows right' onClick={changeIndex}></div>
+        <div className='arrow_side' onClick={changeIndex}>
+            <div className='arrows right'></div>
         </div>
     )
 }
