@@ -1,11 +1,10 @@
 .arrow_side {
   text-align: center;
-  width: 50px;
-  height: 50px;
+  width: 4%;
 }
 .arrow_down {
   text-align: center;
-  width: 30px;
+  width: 10%;
 }
 .arrows {
   border: solid var(--color-1);

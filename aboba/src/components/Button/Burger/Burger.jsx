@@ -1,19 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './BurgerStyle.css'
 
 const Burger = () => {
-    let check = 'true';
+    const [check, setCheck] = useState(true);
     const click = event => {
-        if (check === 'true')
-            check = 'false'
+        if (check === true)
+            setCheck(false)
         else {
-            check = 'true'
+            setCheck(true)
         }
         console.log(check)
     }
 
     return (
-        <div className={check === 'true' ? 'icon nav-icon-6' : 'open icon nav-icon-6 open'} onClick={click}>
+        <div className={check === true ? 'icon nav-icon-6' : 'open  icon nav-icon-6 '} onClick={click}>
             <span></span>
             <span></span>
             <span></span>
