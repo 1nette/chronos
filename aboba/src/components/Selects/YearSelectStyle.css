@@ -1,0 +1,38 @@
+.year_select {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-4);
+  width: 20%;
+  border-radius: 20px;
+}
+
+.year_select p {
+  font-family: "Lobster Two", cursive;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-right: 1.3vw;
+}
+
+body::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--color-1);
+  border-radius: 20px;
+}
+
+.year_dropdown {
+  display: flex;
+  flex-direction: column;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.55s opacity, 0.55s visibility;
+
+  position: absolute;
+  top: 4.5rem;
+  right: 1rem;
+}
