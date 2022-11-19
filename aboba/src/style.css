@@ -6,6 +6,8 @@
   --color-4: #a6a9c8;
   --color-5: #d3d9e9;
   --color-6: white;
+  --color-7: rgba(255, 255, 255, 0.795);
+  --color-8: rgba(190, 190, 190, 0.795);
 }
 body {
   overflow: hidden;

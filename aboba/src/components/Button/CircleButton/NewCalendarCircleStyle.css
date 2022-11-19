@@ -9,6 +9,7 @@
   position: relative;
   transform: scale(1.1);
   margin: 20% auto;
+  transition: 0.50s background-color;
 }
 
 .new_cal_circle::after {
