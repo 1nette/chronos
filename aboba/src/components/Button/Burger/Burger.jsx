@@ -3,20 +3,26 @@ import './BurgerStyle.css'
 
 const Burger = () => {
     const [check, setCheck] = useState(true);
+
     const click = event => {
         if (check === true)
             setCheck(false)
         else {
             setCheck(true)
         }
-        console.log(check)
     }
 
     return (
-        <div className={check === true ? 'icon nav-icon-6' : 'open  icon nav-icon-6 '} onClick={click}>
-            <span></span>
-            <span></span>
-            <span></span>
+        <div className={check === true ? 'icon burger_icon' : 'open icon burger_icon '} onClick={click}>
+            <div>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div className={check === true ? 'hidden burger_dropdown' : 'shown burger_dropdown'}>
+                <div className='burger_list_item'><p>Edit profile</p></div>
+                <div className='burger_list_item'><p>Log out</p></div>
+            </div>
         </div>
     )
 }

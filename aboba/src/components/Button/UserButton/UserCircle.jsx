@@ -1,16 +1,14 @@
 import React from 'react';
-import cal from "../../../assets/calendar/calendar.png"
+import avatar from "../../../assets/avatar/yato.png"
 import './UserCircleStyle.css'
 
 const UserCircle = () => {
     return (
         <div>
-
             <div className='circle_user_box'>
-                <img src={cal} alt="afff;[ef;" className='img' />
+                <img src={avatar} alt="avatar" className='avatar' />
             </div>
         </div>
-
     )
 }
 export default UserCircle

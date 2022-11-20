@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import './YearSelectStyle.css'
 import ArrowDown from '../Button/Arrows/ArrowDown';
+import './YearSelectStyle.css'
 
-const YearSelect = () => {
+const YearSelect = ({ nowYear, selectYear }) => {
     const [currentYear, setCurrentYear] = useState();
     const [yearsArray, setYearsArray] = useState([]);
     const [isDropdownShown, setIsDropdownShown] = useState(false);
@@ -18,7 +18,7 @@ const YearSelect = () => {
             array.push(i);
         }
         setYearsArray(array);
-    }, [currentYear])
+    }, [currentYear, nowYear])
 
     const showDropdown = event => {
         if (isDropdownShown)
@@ -31,11 +31,12 @@ const YearSelect = () => {
 
     return (
         <div className='year_select' onClick={showDropdown}>
-            <p>year {currentYear}</p>
+            <p>year {nowYear}  </p>
             <ArrowDown />
             <div className={isDropdownShown ? 'year_dropdown shown' : 'year_dropdown hidden'}>
                 {yearsArray.map(year =>
-                    <div className={currentYear === year ? 'year current' : 'year'} ref={currentYear === year ? myRef : null} key={year}>{year}</div>
+                    <div className={Number(nowYear) === year ? 'year current' : 'year'} ref={Number(nowYear) === year ? myRef : null}
+                        key={year} onClick={() => selectYear(year)}>{year}</div>
                 )}
             </div>
         </div>

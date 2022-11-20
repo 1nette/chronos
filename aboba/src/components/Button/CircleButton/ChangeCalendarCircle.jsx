@@ -1,12 +1,20 @@
-import React from 'react';
-import cal from "../../../assets/calendar/calendar.png"
+import React, { useState } from 'react';
+import calendarImage from "../../../assets/calendar/calendar.png"
 
 const ChangeCalendarCircle = ({ info }) => {
+    const [isShown, setIsShown] = useState(true);
+
+    const showHide = event => {
+        if (isShown)
+            setIsShown(false);
+        else
+            setIsShown(true);
+    }
+
     return (
         <div>
-
-            <div className='circle' style={{ backgroundColor: info.color }}>
-                <img src={cal} alt="afff;[ef;" className='img' />
+            <div onClick={showHide} className={isShown ? 'cal_shown circle' : 'circle'} style={{ backgroundColor: info.color }}>
+                <img src={calendarImage} alt="calendarImage" className='calendarImage' />
             </div>
         </div>
 
