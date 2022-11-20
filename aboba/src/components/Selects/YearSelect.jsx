@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './YearSelectStyle.css'
 import ArrowDown from '../Button/Arrows/ArrowDown';
-import YearsList from '../Lists/YearsList/YearsList';
 
 const YearSelect = () => {
     const [currentYear, setCurrentYear] = useState();
     const [yearsArray, setYearsArray] = useState([]);
     const [isDropdownShown, setIsDropdownShown] = useState(false);
+    const myRef = useRef(null);
 
     useEffect(() => {
         let today = new Date();
@@ -23,15 +23,21 @@ const YearSelect = () => {
     const showDropdown = event => {
         if (isDropdownShown)
             setIsDropdownShown(false);
-        else
+        else {
             setIsDropdownShown(true);
+            myRef.current.scrollIntoView();
+        }
     }
 
     return (
         <div className='year_select' onClick={showDropdown}>
             <p>year {currentYear}</p>
             <ArrowDown />
-            <YearsList yearsArray={yearsArray} isDropdownShown={isDropdownShown} />
+            <div className={isDropdownShown ? 'year_dropdown shown' : 'year_dropdown hidden'}>
+                {yearsArray.map(year =>
+                    <div className={currentYear === year ? 'year current' : 'year'} ref={currentYear === year ? myRef : null} key={year}>{year}</div>
+                )}
+            </div>
         </div>
     )
 }
