@@ -23,18 +23,16 @@
 
 .year_dropdown {
   height: 44vh;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   overflow-y: scroll;
-
   font-family: "Lobster Two", cursive;
   font-weight: 300;
   font-size: 1rem;
-
   transition: 0.5s opacity, 0.55s visibility;
-
   position: absolute;
-  top: 24.6%;
+  top: 28.6%;
+  background-color: rgba(77, 82, 82, 0.484);
 }
 
 .hidden {
@@ -62,4 +60,13 @@
 
 .current {
   background-color: var(--color-8);
+}
+
+.year_dropdown::-webkit-scrollbar {
+  width: 15px;
+}
+
+.year_dropdown::-webkit-scrollbar-thumb {
+  background-color: var(--color-2);
+  border-radius: 20px;
 }

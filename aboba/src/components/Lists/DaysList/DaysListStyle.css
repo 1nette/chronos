@@ -3,12 +3,12 @@
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(6, 1fr);
   height: 65%;
-  grid-column-gap: 5%;
+  grid-column-gap: 1%;
   grid-row-gap: 5%;
   text-align: end;
   width: 82%;
-  margin: 3% 4%;
-  border-radius: 20px;
+  margin: 0 4% 3% 4%;
+  border-radius: 0 0 20px 20px;
   padding: 2% 5%;
 }
 .green_dl {
