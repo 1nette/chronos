@@ -1,0 +1,25 @@
+.days_list_dl {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  height: 65%;
+  grid-column-gap: 5%;
+  grid-row-gap: 5%;
+  text-align: end;
+  width: 82%;
+  margin: 3% 4%;
+  border-radius: 20px;
+  padding: 2% 5%;
+}
+.green_dl {
+  background-color: #dae5dd;
+}
+.pink_dl {
+  background-color: #fdd2c8;
+}
+.orange_dl {
+  background-color: #ed9e79;
+}
+.blue_dl {
+  background-color: #d4ddfa;
+}

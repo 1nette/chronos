@@ -9,9 +9,9 @@
   --color-7: rgba(255, 255, 255, 0.795);
   --color-8: rgba(190, 190, 190, 0.795);
 }
-body {
+/* body {
   overflow: hidden;
-}
+} */
 /* body,
 html {
   width: 100%;
@@ -107,8 +107,10 @@ video {
   outline: none;
 }
 html {
-  height: 101%;
-} /* always display scrollbars */
+  width: 100%;
+  height: 100%;
+}
+/* } always display scrollbars */
 body {
   font-size: 62.5%;
   line-height: 1;
@@ -170,11 +172,16 @@ a {
 body {
   background-color: var(--color-6);
   width: 100%;
+  height: 100%;
 }
 p {
   user-select: none;
 }
+#root {
+  width: 100%;
+  height: 100%;
+}
 .App {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 }

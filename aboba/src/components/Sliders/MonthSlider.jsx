@@ -3,7 +3,7 @@ import ArrowLeft from '../Button/Arrows/ArrowLeft';
 import ArrowRight from '../Button/Arrows/ArrowRight';
 import './MonthSliderStyle.css'
 
-const MonthSlider = ({ setClassSeason }) => {
+const MonthSlider = ({ setClassSeason, setClassBoxDay }) => {
     let date = new Date();
     let result = date.getMonth();
     const [index, setIndex] = useState(result);
@@ -13,23 +13,27 @@ const MonthSlider = ({ setClassSeason }) => {
         switch (index) {
             case 0: case 1: case 11:
                 setClassSeason('header_calendar_c winter');
+                setClassBoxDay('days_list_dl blue_dl')
                 break;
 
             case 2: case 3: case 4:
                 setClassSeason('header_calendar_c spring');
+                setClassBoxDay('days_list_dl pink_dl')
                 break;
 
             case 5: case 6: case 7:
                 setClassSeason('header_calendar_c summer');
+                setClassBoxDay('days_list_dl green_dl')
                 break;
 
             case 8: case 9: case 10:
                 setClassSeason('header_calendar_c fall');
+                setClassBoxDay('days_list_dl orange_dl')
                 break;
 
             default: break;
         }
-    }, [setClassSeason, index])
+    }, [setClassSeason, setClassBoxDay, index])
 
     return (
         <div className='slider_month'>
