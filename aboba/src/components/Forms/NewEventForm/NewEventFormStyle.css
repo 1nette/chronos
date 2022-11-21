@@ -1,137 +1,61 @@
-.newcal_page {
+.overlay {
+  position: fixed;
+  z-index: 4;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: none;
+}
+.active {
+  display: block;
+  height: 100%;
   display: flex;
   flex-direction: column;
-
-  position: absolute;
-  transition: 0.5s opacity, 0.5s visibility;
-  z-index: 14;
-
-  color: var(--color-3);
-  background-color: var(--color-6);
-
-  padding: 2rem;
-  top: 12vh;
-  left: 7vw;
-}
-
-.newcal_pagetitle {
-  display: flex;
-  align-self: center;
+  align-items: center;
   justify-content: center;
 
-  margin: 0rem 2rem 1.5rem 2rem;
-
-  font-family: "Lobster Two", cursive;
-  font-weight: 300;
-  font-size: 2.5rem;
+  background-color: rgba(14, 22, 39, 0.659);
 }
-
-.newcal_login {
+.popap {
   display: flex;
-  justify-content: center;
-
-  margin-top: 1rem;
-}
-
-.newcal_email {
-  display: flex;
-  justify-content: center;
-
-  margin-top: 1rem;
-}
-
-.newcal_pass {
-  display: flex;
-  justify-content: center;
-
-  margin-top: 1rem;
-  padding-right: 2.9rem;
-}
-
-.newcal_passrep {
-  display: flex;
-  justify-content: center;
-
-  margin-top: 1rem;
-  padding-right: 9.8rem;
-}
-
-.newcal_span {
-  margin-right: 1rem;
-
-  font-family: "Lobster Two", cursive;
-  font-weight: 300;
-  font-size: 1.5rem;
-}
-
-.newcal_input {
-  padding-left: 1.2rem;
-  width: 12rem;
-
-  font-family: "Lobster Two", cursive;
-  font-weight: 300;
-  font-size: 1rem;
-}
-
-.newcal_button {
-  align-self: center;
-  padding: 0.8rem;
-  margin-top: 2rem;
-
-  width: 8rem;
-  border-radius: 2rem;
-  border: none;
-
-  background-color: var(--color-3);
-  color: white;
-
-  font-family: "Lobster Two", cursive;
-  font-weight: 300;
-  font-size: 1.3rem;
-}
-.newcal_button {
-  margin-top: 0;
-}
-.newcal_button:hover {
+  flex-direction: column;
+  position: relative;
   background-color: var(--color-4);
+  padding: 2% 3%;
+  max-width: 50%;
+  overflow: auto;
+  border-radius: 20px;
 }
-
-.aboba {
+.close_button_ef {
+  margin-left: 15px;
+  color: var(--color-1);
+  font-weight: bold;
+  float: right;
+  font-size: 26px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.column_ef {
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  align-items: center;
 }
-
-.newcal_error {
-  display: flex;
-  justify-content: center;
-
-  color: #d1556c;
-
-  margin-top: 1rem;
-  font-size: 1.5rem;
+.image_ef {
+  width: 5%;
+  height: auto;
 }
-
-.newcal_link {
-  display: flex;
-  justify-content: center;
-
-  margin-top: 1rem;
-  font-size: 1.5rem;
+.popap div {
+  margin: 1% 0;
 }
-
-.newcal_link a {
-  color: var(--color-3);
+.header_ef {
+  width: 100%;
+  justify-content: space-between;
+}
+.header_ef h2 {
   font-family: "Lobster Two", cursive;
-  font-weight: 300;
+  font-weight: 700;
   font-size: 1rem;
-}
-
-.hidden_form {
-  opacity: 0;
-  visibility: hidden;
-}
-
-.shown_form {
-  opacity: 1;
-  visibility: visible;
 }

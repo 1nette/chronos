@@ -23,7 +23,7 @@
   top: 52%;
   left: 8%;
   right: 8%;
-  z-index: 9;
+  z-index: 1;
 }
 .new_cal_circle::before {
   border-radius: 50%;
@@ -36,7 +36,7 @@
   left: 52%;
   top: 8%;
   bottom: 8%;
-  z-index: 9;
+  z-index: 1;
 }
 .circle:hover {
   background-color: var(--color-1);

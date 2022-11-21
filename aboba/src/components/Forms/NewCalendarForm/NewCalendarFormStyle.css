@@ -4,7 +4,7 @@
 
   position: absolute;
   transition: 0.5s opacity, 0.5s visibility;
-  z-index: 14;
+  z-index: 3;
 
   color: var(--color-3);
   background-color: var(--color-6);

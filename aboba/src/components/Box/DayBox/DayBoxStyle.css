@@ -20,7 +20,6 @@
   background-color: rgb(118, 175, 118);
 }
 .day_box_db:hover {
-  transform: scaleY(1.1);
   box-shadow: 10px 5px 5px rgba(48, 44, 44, 0.678);
   border-radius: 5px;
 }

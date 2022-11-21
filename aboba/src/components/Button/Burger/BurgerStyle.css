@@ -75,7 +75,7 @@
   position: absolute;
   top: 7.4vh;
   right: 0.1vw;
-  z-index: 13;
+  z-index: 2;
 }
 
 .burger_list_item {
