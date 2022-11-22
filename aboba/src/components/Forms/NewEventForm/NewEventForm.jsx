@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import avatar from "../../../assets/avatar/yato.png"
 import clock from "../../../assets/calendar/FormEvent/clock.png"
@@ -15,6 +15,19 @@ const NewEventForm = ({ showFormEvent, setShowFormEvent }) => {
         setShowFormEvent('overlay');
     }
 
+    useEffect(() => {
+        let array = ['00:00'],
+            h = 0,
+            mm = '00';
+
+        if (mm === 30) {
+            mm = '00';
+        }
+        else {
+
+        }
+    }, [timesArray])
+
     return (
         <div className={showFormEvent} >
             <form className="popap">
@@ -22,31 +35,35 @@ const NewEventForm = ({ showFormEvent, setShowFormEvent }) => {
                     <h2>Create new Event</h2>
                     <span className='close_button_ef' onClick={closeEvent}>&times;</span>
                 </div>
+                <div className='input_row_box_ef'>
+                    <div className='column_ef'>
+                        <img src={avatar} alt="avatar" className='image_ef' />
+                        <input placeholder='Name of the event' />
+                        <input type='checkbox' />
+                        <p className='fonts'>All day</p>
+                    </div>
 
-                <div className='column_ef'>
-                    <img src={avatar} alt="avatar" className='image_ef' />
-                    <input placeholder='Name of the event' />
-                    <input type='checkbox' /> All day
+                    <div className='column_ef '>
+                        <img src={clock} alt="avatar" className='image_ef' />
+                        <div className='column_ef time_box_enterval_ef'><input type=" text" className='date_input_ef' /><ArrowDown /></div>
+                        <div className='aa_ef'>-</div>
+                        <div className='column_ef time_box_enterval_ef'><input type=" text" className='date_input_ef' /><ArrowDown /></div>
+                    </div>
+                    <div className='column_ef'>
+                        <img src={location} alt="avatar" className='image_ef' />
+                        <input type="text" placeholder='Place' />
+                    </div>
+                    <div className='column_ef'>
+                        <img src={remind} alt="ima" className='image_ef' />
+                        <p className='fonts'>Remind me:</p>
+                        <select name="" id=""></select>
+                    </div>
                 </div>
-
-                <div className='column_ef'>
-                    <img src={clock} alt="avatar" className='image_ef' />
-                    <div className='column_ef'><input type=" text" /><ArrowDown /></div>-
-                    <div className='column_ef'><input type=" text" /><ArrowDown /></div>
-                </div>
-                <div className='column_ef'>
-                    <img src={location} alt="avatar" className='image_ef' />
-                    <input type="text" placeholder='Place' />
-                </div>
-                <div className='column_ef'>
-                    <img src={remind} alt="ima" className='image_ef' />
-                    Remind me:
-                    <select name="" id=""></select>
-                </div>
-                <div className='column_ef'>
+                <div className='column_ef buttons_ef'>
                     <button>More</button>
                     <button>Save</button>
                 </div>
+
             </form>
         </div>
     )

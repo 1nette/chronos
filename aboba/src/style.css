@@ -117,6 +117,11 @@ body {
   line-height: 1;
   font-family: Arial, Tahoma, Verdana, sans-serif;
 }
+input {
+  outline: 0;
+  background: transparent;
+  border: none;
+}
 
 article,
 aside,
