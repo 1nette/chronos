@@ -1,0 +1,18 @@
+.aaaa {
+  padding: 1% 4% 5% 4%;
+  background-color: var(--color-5);
+  height: 90%;
+}
+#trigger {
+  display: none;
+}
+.checker {
+  background-image: url(../../../assets/1.jpg);
+  background-size: auto 100%;
+  width: 40px;
+  height: 40px;
+  background-repeat: no-repeat;
+}
+#trigger:checked + .checker {
+  background-image: url(../../../assets/2.jpg);
+}

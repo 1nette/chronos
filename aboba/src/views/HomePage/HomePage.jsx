@@ -1,4 +1,5 @@
 import React from 'react';
+import EventButton from '../../components/Button/EventButton/EventButton';
 import Calendar from '../../components/Calendar/Calendar';
 import CalendarsList from '../../components/Lists/CalendarsList/CalendarsList';
 import NavigationBar from '../../components/Navigation/NavigationBar';
@@ -13,6 +14,7 @@ const HomePage = () => {
                 <CalendarsList />
                 <Calendar />
             </div>
+            <EventButton />
         </div>
     )
 }

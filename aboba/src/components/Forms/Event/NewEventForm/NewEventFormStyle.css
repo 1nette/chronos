@@ -65,7 +65,7 @@
   margin: 0 3%;
 }
 
-.input_row_box_ef>div {
+.input_column_box_ef > div {
   margin: 2% 0;
 }
 
@@ -81,7 +81,7 @@
   margin-left: 3%;
 }
 
-.input_row_box_ef {
+.input_column_box_ef {
   display: flex;
   flex-direction: column;
   margin: 3% 0 3% 6%;
@@ -91,13 +91,17 @@
   justify-content: end;
 }
 
-.buttons_ef button {
+.buttons_ef button,
+.buttons_ef a {
   border: none;
   background-color: var(--color-1);
   color: var(--color-6);
   padding: 2% 3%;
   border-radius: 20px;
   margin-left: 4%;
+  font-family: "Lobster Two", cursive;
+  font-weight: 700;
+  font-size: 0.7rem;
 }
 
 .time_box_enterval_ef {
@@ -140,7 +144,12 @@
 }
 
 .remind {
-  overflow: hidden;
-  height: auto;
+  height: 25%;
   top: 73%;
+}
+
+.input_row_box_ef {
+  display: flex;
+  flex-direction: row;
+  margin: 3% 0 3% 6%;
 }
