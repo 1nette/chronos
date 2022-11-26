@@ -1,16 +1,22 @@
 import React, { useState, useEffect } from 'react';
 
-import avatar from "../../../../assets/avatar/yato.png"
-import clock from "../../../../assets/calendar/FormEvent/clock.png"
-import location from "../../../../assets/calendar/FormEvent/location.png"
-import remind from "../../../../assets/calendar/FormEvent/remind.png"
-import ArrowDown from '../../../Button/Arrows/ArrowDown';
 
-import './NewEventsFormStyle.css'
+import clock from "../../../assets/calendar/FormEvent/clock.png"
+import location from "../../../assets/calendar/FormEvent/location.png"
+import remind from "../../../assets/calendar/FormEvent/remind.png"
+import calendar from "../../..//assets/calendar/calendar.png"
+import type1 from "../../../assets/calendar/FormEvent/task.png"
+import type2 from "../../../assets/calendar/FormEvent/arrangement.png"
+import type3 from "../../../assets/calendar/FormEvent/event.png"
+import ArrowDown from "../../Button/Arrows/ArrowDown"
 
-const NewEventsForm = ({ showFormEvent, setShowFormEvent }) => {
+import './NewEventFormStyle.css'
+
+const NewEventsForm = () => {
     const [startsArray, setStartsArray] = useState([]);
     const [endsArray, setEndsArray] = useState([]);
+
+    const [typeEventImg, setTypeEventImg] = useState(type1)// константа где  меняется картинка в зависимости от типа 
 
     const [isDropdownShown, setIsDropdownShown] = useState(false);
     const [isDropdownShown2, setIsDropdownShown2] = useState(false);
@@ -29,10 +35,6 @@ const NewEventsForm = ({ showFormEvent, setShowFormEvent }) => {
         '1h',
         '3h'
     ]
-
-    const closeEvent = () => {
-        setShowFormEvent('overlay');
-    }
 
     const showDropdown = event => {
         if (!isSelectActive) {
@@ -115,15 +117,15 @@ const NewEventsForm = ({ showFormEvent, setShowFormEvent }) => {
     return (
         <div className='aaaa' >
             <form >
-                <div className='column_ef header_ef'>
+                <div className='header_esf'>
                     <button>Delete</button>
-                    <button>Update</button>
-                    <div className='column_ef'>
-                        <img src={remind} alt="ima" className='image_ef' />
-                        <p className='fonts'>Remind me:</p>
+                    <button>Save</button>
+                    <div className='column_ef remind_esf'>
+                        <img src={remind} alt="ima" className='image_evf' />
+                        <p className='fonts fonts_evs'>Remind me:</p>
 
                         <div className='column_ef time_box_enterval_ef' onClick={showDropdown3}>
-                            <input type=" text" className='date_input_ef' value={remindValue} disabled /><ArrowDown />
+                            <input type=" text" className='date_input_evf' value={remindValue} disabled /><ArrowDown />
                             <div className={isDropdownShown3 ? 'remind event_form_dropdown shown' : 'remind event_form_dropdown hidden'}>
                                 {remindArray.map(remindItem =>
                                     <div className='event_form_time' key={remindItem} onClick={() => setRemindValue(remindItem)}><p>{remindItem}</p></div>
@@ -134,22 +136,24 @@ const NewEventsForm = ({ showFormEvent, setShowFormEvent }) => {
                     <input id="trigger" type="checkbox" />
                     <label for="trigger" class="checker"></label>
                 </div>
-                <p>INFO</p>
+                <h2 className='inf_esf'>INFO</h2>
                 <div className='input_row_box_ef'>
-                    <div>
-                        <div className='column_ef'>
-                            <img src={avatar} alt="avatar" className='image_ef' />
-                            <label>Calendar:</label>
-                            <select></select>
+
+                    <div className='input_box_esf'>
+                        <div className='column_ef cal_and_type'>
+                            <img src={calendar} alt="avatar" className='image_esf' />
+                            <div className="arrow_esf column_ef">
+                                <label className='lable_cal_esf'>Calendar:</label>
+                                <input type=" text" className='date_input_evf' disabled /><ArrowDown />
+                            </div>
+                            <div className="arrow_esf column_ef">
+                                <label className='lable_type_esf'>Type Event:</label>
+                                <input type=" text" className='date_input_evf' disabled /><ArrowDown />
+                            </div>
+
                         </div>
                         <div className='column_ef'>
-
-                            <div>
-                                <label>Type Event:</label>
-                                <select></select>
-
-                            </div>
-                            <img src={avatar} alt="avatar" className='image_ef' />
+                            <img src={typeEventImg} alt="avatar" className='image_ef' />
                             <input placeholder='Name of the event' />
 
                         </div>
@@ -165,8 +169,8 @@ const NewEventsForm = ({ showFormEvent, setShowFormEvent }) => {
                             <img src={clock} alt="avatar" className='image_ef' />
                             <div>
                                 <div className='column_ef'>
-                                    <div className='column_ef time_box_enterval_ef'>
-                                        <label htmlFor="">Start:</label>
+                                    <div className='column_ef data_esf'>
+                                        <label htmlFor="" className='text_data_esf'>Start:</label>
                                         <input type="date" />
                                     </div>
 
@@ -178,12 +182,12 @@ const NewEventsForm = ({ showFormEvent, setShowFormEvent }) => {
                                             )}
                                         </div>
                                     </div>
-                                    <input type='checkbox' onChange={isSelectActiveChange} />
+                                    <input type='checkbox' onChange={isSelectActiveChange} className='all_day_esf' />
                                     <p className='fonts'>All day</p>
                                 </div>
                                 <div className='column_ef'>
-                                    <div className='column_ef time_box_enterval_ef'>
-                                        <label htmlFor="">End:</label>
+                                    <div className='column_ef data_esf'>
+                                        <label htmlFor="" className='text_data_esf'>End:</label>
                                         <input type="date" />
                                     </div>
 

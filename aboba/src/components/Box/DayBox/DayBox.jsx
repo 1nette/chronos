@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "./DayBoxStyle.css"
-import NewEventForm from '../../Forms/NewEventForm/NewEventForm'
+import NewEventForm from '../../Forms/Event/NewEventForm'
 const moment = require("moment")
 
 
