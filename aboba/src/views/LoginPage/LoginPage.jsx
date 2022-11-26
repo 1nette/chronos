@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
 import NavigationBar from '../../components/Navigation/NavigationBar';
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
 
 import './LoginPageStyle.css'
 
 const LoginPage = () => {
-    const [/*login, */setLogin] = useState([]);
-    const [/*password, */setPassword] = useState([]);
+    const [email, setEmail] = useState([]);
+    const [password, setPassword] = useState([]);
     const [error, setError] = useState('');
+
+    let navigate = useNavigate();
 
     const loginFunc = async event => {
         event.preventDefault();
         try {
+            await axios.post(`http://localhost:8000/api/login`, JSON.stringify({ "email": email, "password": password }), { "headers": { "content-type": "application/json", }, });
 
+            navigate('/home');
         }
         catch (e) {
             setError(e.response.data)
@@ -25,8 +31,8 @@ const LoginPage = () => {
                 <span className='auth_pagetitle'>Log In</span>
 
                 <div className='auth_login'>
-                    <span className='auth_span'>Login</span>
-                    <input className='auth_input' required type="text" placeholder='enter login...' onChange={e => setLogin(e.target.value)} />
+                    <span className='auth_span'>Email</span>
+                    <input className='auth_input' required type="text" placeholder='enter email...' onChange={e => setEmail(e.target.value)} />
                 </div>
                 <div className='auth_pass'>
                     <span className='auth_span'>Password</span>

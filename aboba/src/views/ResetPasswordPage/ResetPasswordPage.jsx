@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import NavigationBar from '../../components/Navigation/NavigationBar';
 
 import '../LoginPage/LoginPageStyle.css'
-import './ResetPasswordPageStyle.css'
 
 const ResetPasswordPage = () => {
     const [/*email, */setEmail] = useState([]);

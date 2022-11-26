@@ -1,18 +1,24 @@
-import React, { useState } from 'react';
-import './CalendarsListStyle.css'
+import React, { useState/*, useEffect*/ } from 'react';
+// import axios from 'axios'
 import ChangeCalendarCircle from '../../Button/CircleButton/ChangeCalendarCircle';
 import NewCalendarCircle from '../../Button/CircleButton/NewCalendarCircle';
 import NewCalendarForm from '../../Forms/NewCalendarForm/NewCalendarForm';
 
+import './CalendarsListStyle.css'
+
 const CalendarsList = () => {
     const [isNewCalFormShown, setIsNewCalFormShown] = useState(false);
+    const [calendarsArray/*, setCalendarsArray*/] = useState([]);
 
-    let calendarsArray = [
-        { name: 'aboba1', color: '#F4C5B5' },
-        { name: 'aboba2', color: '#443973' },
-        { name: 'aboba3', color: '#B99CBF' },
-        { name: 'aboba4', color: '#F2E7BA' }
-    ]
+    // useEffect(() => {
+    //     async function getCalendars() {
+    //         const response = await axios.get(`http://localhost:8000/api/getCalendar`);
+    //         setCalendarsArray(response.data);
+    //         console.log(response.data);
+    //         console.log(response);
+    //     }
+    //     getCalendars()
+    // }, [])
 
     return (
         <div className='calendars_box'>

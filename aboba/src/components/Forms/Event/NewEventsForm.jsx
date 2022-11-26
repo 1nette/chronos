@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 
 
-import clock from "../../../assets/calendar/FormEvent/clock.png"
-import location from "../../../assets/calendar/FormEvent/location.png"
-import remind from "../../../assets/calendar/FormEvent/remind.png"
-import calendar from "../../..//assets/calendar/calendar.png"
-import type1 from "../../../assets/calendar/FormEvent/task.png"
-import type2 from "../../../assets/calendar/FormEvent/arrangement.png"
-import type3 from "../../../assets/calendar/FormEvent/event.png"
+import clockImg from "../../../assets/calendar/FormEvent/clock_dark.png"
+import locationImg from "../../../assets/calendar/FormEvent/location_dark.png"
+import descriptionImg from "../../../assets/calendar/FormEvent/contract_dark.png"
+import remindImg from "../../../assets/calendar/FormEvent/remind_dark.png"
+import calendarImg from "../../..//assets/calendar/calendar_dark.png"
+import taskImg from "../../../assets/calendar/FormEvent/task.png"
+import arrangementImg from "../../../assets/calendar/FormEvent/arrangement.png"
+import eventImg from "../../../assets/calendar/FormEvent/event.png"
 import ArrowDown from "../../Button/Arrows/ArrowDown"
 
 import './NewEventFormStyle.css'
@@ -16,7 +17,10 @@ const NewEventsForm = () => {
     const [startsArray, setStartsArray] = useState([]);
     const [endsArray, setEndsArray] = useState([]);
 
-    const [typeEventImg, setTypeEventImg] = useState(type1)// константа где  меняется картинка в зависимости от типа 
+    const [typeEventImg, setTypeEventImg] = useState(taskImg)// константа где  меняется картинка в зависимости от типа 
+
+    const [isCalendarDropdownShown, setIsCalendarDropdownShown] = useState(false);
+    const [isEventTypeDropdownShown, setIsEventTypeDropdownShown] = useState(false);
 
     const [isDropdownShown, setIsDropdownShown] = useState(false);
     const [isDropdownShown2, setIsDropdownShown2] = useState(false);
@@ -35,6 +39,26 @@ const NewEventsForm = () => {
         '1h',
         '3h'
     ]
+
+    const showCalendarDropdown = event => {
+        if (!isSelectActive) {
+            if (isCalendarDropdownShown)
+                setIsCalendarDropdownShown(false);
+            else {
+                setIsCalendarDropdownShown(true);
+            }
+        }
+    }
+
+    const showEventTypeDropdown = event => {
+        if (!isSelectActive) {
+            if (isEventTypeDropdownShown)
+                setIsEventTypeDropdownShown(false);
+            else {
+                setIsEventTypeDropdownShown(true);
+            }
+        }
+    }
 
     const showDropdown = event => {
         if (!isSelectActive) {
@@ -121,7 +145,7 @@ const NewEventsForm = () => {
                     <button>Delete</button>
                     <button>Save</button>
                     <div className='column_ef remind_esf'>
-                        <img src={remind} alt="ima" className='image_evf' />
+                        <img src={remindImg} alt="ima" className='image_evf' />
                         <p className='fonts fonts_evs'>Remind me:</p>
 
                         <div className='column_ef time_box_enterval_ef' onClick={showDropdown3}>
@@ -134,19 +158,19 @@ const NewEventsForm = () => {
                         </div>
                     </div>
                     <input id="trigger" type="checkbox" />
-                    <label for="trigger" class="checker"></label>
+                    <label htmlFor="trigger" className="checker"></label>
                 </div>
                 <h2 className='inf_esf'>INFO</h2>
                 <div className='input_row_box_ef'>
 
                     <div className='input_box_esf'>
                         <div className='column_ef cal_and_type'>
-                            <img src={calendar} alt="avatar" className='image_esf' />
-                            <div className="arrow_esf column_ef">
+                            <img src={calendarImg} alt="avatar" className='image_esf' />
+                            <div className="arrow_esf column_ef" onClick={showCalendarDropdown}>
                                 <label className='lable_cal_esf'>Calendar:</label>
                                 <input type=" text" className='date_input_evf' disabled /><ArrowDown />
                             </div>
-                            <div className="arrow_esf column_ef">
+                            <div className="arrow_esf column_ef" onClick={showEventTypeDropdown}>
                                 <label className='lable_type_esf'>Type Event:</label>
                                 <input type=" text" className='date_input_evf' disabled /><ArrowDown />
                             </div>
@@ -158,15 +182,15 @@ const NewEventsForm = () => {
 
                         </div>
                         <div className='column_ef'>
-                            <img src={location} alt="avatar" className='image_ef' />
+                            <img src={descriptionImg} alt="avatar" className='image_ef' />
                             <input type="text" placeholder='Description' />
                         </div>
                         <div className='column_ef'>
-                            <img src={location} alt="avatar" className='image_ef' />
+                            <img src={locationImg} alt="avatar" className='image_ef' />
                             <input type="text" placeholder='Place' />
                         </div>
                         <div className='column_ef'>
-                            <img src={clock} alt="avatar" className='image_ef' />
+                            <img src={clockImg} alt="avatar" className='image_ef' />
                             <div>
                                 <div className='column_ef'>
                                     <div className='column_ef data_esf'>
