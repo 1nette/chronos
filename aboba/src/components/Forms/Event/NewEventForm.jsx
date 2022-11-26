@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import avatar from "../../../../assets/avatar/yato.png"
-import clock from "../../../../assets/calendar/FormEvent/clock.png"
-import location from "../../../../assets/calendar/FormEvent/location.png"
-import remind from "../../../../assets/calendar/FormEvent/remind.png"
-import ArrowDown from '../../../Button/Arrows/ArrowDown';
+import avatar from "../../../assets/avatar/yato.png"
+import clock from "../../../assets/calendar/FormEvent/clock.png"
+import location from "../../../assets/calendar/FormEvent/location.png"
+import remind from "../../../assets/calendar/FormEvent/remind.png"
+import ArrowDown from '../../Button/Arrows/ArrowDown';
 
 import './NewEventFormStyle.css'
 

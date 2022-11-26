@@ -147,9 +147,104 @@
   height: 25%;
   top: 73%;
 }
-
+/* ---------------------events--------------------------------*/
 .input_row_box_ef {
   display: flex;
   flex-direction: row;
   margin: 3% 0 3% 6%;
+}
+.aaaa {
+  padding: 1% 4% 5% 4%;
+  background-color: var(--color-5);
+  height: 90%;
+  overflow: hidden;
+}
+#trigger {
+  display: none;
+}
+.checker {
+  background-image: url(../../../assets/calendar/FormEvent/open_lock.png);
+  background-size: auto 100%;
+  width: 30px;
+  height: 30px;
+  background-repeat: no-repeat;
+}
+#trigger:checked + .checker {
+  background-image: url(../../../assets/calendar/FormEvent/lock.png);
+}
+.header_esf {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: flex-end;
+}
+.header_esf button {
+  width: 10%;
+  margin: 0 5%;
+  background-color: var(--color-1);
+  padding: 0.5%;
+  border-radius: 20px;
+  color: var(--color-7);
+  font-family: "Lobster Two", cursive;
+  font-weight: 700;
+  font-size: 1rem;
+}
+.remind_esf {
+  width: 20%;
+}
+.image_evf {
+  width: 12%;
+  margin-right: 5%;
+}
+.fonts_evs {
+  color: var(--color-1);
+  font-size: 1.2rem;
+  margin-right: 1.5%;
+}
+.date_input_evf {
+  width: 100%;
+  margin-right: 5%;
+}
+.input_row_box_ef,
+.inf_esf {
+  font-family: "Lobster Two", cursive;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--color-1);
+}
+.inf_esf {
+  margin: 2% 0;
+  font-size: 1.5rem;
+  text-align: center;
+}
+.arrow_esf {
+  width: 15%;
+}
+.lable_type_esf,
+.lable_cal_esf {
+  width: 40%;
+  margin-right: 5%;
+}
+.lable_type_esf {
+  margin-left: 4%;
+  width: 70%;
+}
+.image_esf {
+  width: 2.5%;
+  margin: 0 1.5%;
+}
+.cal_and_type {
+  width: 200%;
+}
+.input_box_esf div {
+  margin: 1% 0;
+}
+.text_data_esf {
+  width: 30%;
+}
+.data_esf {
+  width: 45%;
+}
+.all_day_esf {
+  margin-left: 5%;
 }
