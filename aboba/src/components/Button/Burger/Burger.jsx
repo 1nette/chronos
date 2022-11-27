@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios'
+import { Context } from "../../../";
 
 import './BurgerStyle.css'
 
 const Burger = () => {
     const [check, setCheck] = useState(true);
     let navigate = useNavigate();
+    const { store } = useContext(Context)
 
     const click = event => {
         if (check === true)
@@ -17,7 +18,7 @@ const Burger = () => {
     }
 
     const logout = async event => {
-        await axios.get(`http://localhost:8000/api/logout`);
+        store.logout()
         navigate('/')
     }
 

@@ -7,8 +7,8 @@ import descriptionImg from "../../../assets/calendar/FormEvent/contract_dark.png
 import remindImg from "../../../assets/calendar/FormEvent/remind_dark.png"
 import calendarImg from "../../..//assets/calendar/calendar_dark.png"
 import taskImg from "../../../assets/calendar/FormEvent/task.png"
-import arrangementImg from "../../../assets/calendar/FormEvent/arrangement.png"
-import eventImg from "../../../assets/calendar/FormEvent/event.png"
+// import arrangementImg from "../../../assets/calendar/FormEvent/arrangement.png"
+// import eventImg from "../../../assets/calendar/FormEvent/event.png"
 import ArrowDown from "../../Button/Arrows/ArrowDown"
 
 import './NewEventFormStyle.css'
@@ -17,7 +17,7 @@ const NewEventsForm = () => {
     const [startsArray, setStartsArray] = useState([]);
     const [endsArray, setEndsArray] = useState([]);
 
-    const [typeEventImg, setTypeEventImg] = useState(taskImg)// константа где  меняется картинка в зависимости от типа 
+    const [typeEventImg/*, setTypeEventImg*/] = useState(taskImg)// константа где  меняется картинка в зависимости от типа 
 
     const [isCalendarDropdownShown, setIsCalendarDropdownShown] = useState(false);
     const [isEventTypeDropdownShown, setIsEventTypeDropdownShown] = useState(false);
