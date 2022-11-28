@@ -1,5 +1,6 @@
 import React from 'react';
 import DayBox from '../../Box/DayBox/DayBox';
+
 import './DaysListStyle.css'
 
 const DaysList = ({ classBoxDay, daysArray, classHoverDay, month }) => {
@@ -16,7 +17,6 @@ const DaysList = ({ classBoxDay, daysArray, classHoverDay, month }) => {
             ))
             }
         </div>
-
     )
 }
 export default DaysList

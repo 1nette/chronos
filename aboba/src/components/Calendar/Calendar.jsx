@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import './CalendarStyle.css'
 import MonthSlider from '../Sliders/MonthSlider'
 import YearSelect from '../Selects/YearSelect'
 import DaysList from '../Lists/DaysList/DaysList';
 import NameDaysBox from '../Box/NameDaysBox/NameDaysBox';
 import moment from 'moment';
+
+import './CalendarStyle.css'
 
 const Calendar = () => {
     moment.updateLocale('en', { week: { dow: 1 } })
@@ -44,8 +45,6 @@ const Calendar = () => {
             </div>
             <NameDaysBox classBoxNameDay={classBoxNameDay} />
             <DaysList classBoxDay={classBoxDay} daysArray={daysArray} classHoverDay={classHoverDay} month={nowMoment.format("MM")} />
-
-
         </div>
 
     )

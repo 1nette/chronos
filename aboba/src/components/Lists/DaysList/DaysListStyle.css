@@ -2,14 +2,14 @@
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(6, 1fr);
-  height: 78%;
+  height: 90%;
   grid-column-gap: 1%;
-  grid-row-gap: 5%;
+  grid-row-gap: 2%;
   text-align: end;
   width: 82%;
   margin: 0 4% 3% 4%;
   border-radius: 0 0 20px 20px;
-  padding: 2% 5%;
+  padding: 2% 3%;
 }
 .green_dl {
   background-color: #dae5dd;
