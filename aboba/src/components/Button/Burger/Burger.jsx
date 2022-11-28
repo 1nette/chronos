@@ -6,8 +6,8 @@ import './BurgerStyle.css'
 
 const Burger = () => {
     const [check, setCheck] = useState(true);
-    let navigate = useNavigate();
     const { store } = useContext(Context)
+    let navigate = useNavigate();
 
     const click = event => {
         if (check === true)
@@ -19,7 +19,7 @@ const Burger = () => {
 
     const logout = async event => {
         store.logout()
-        navigate('/')
+        navigate('/login')
     }
 
     return (

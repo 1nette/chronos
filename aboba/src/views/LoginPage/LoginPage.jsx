@@ -1,23 +1,27 @@
 import React, { useState, useContext } from 'react';
 import NavigationBar from '../../components/Navigation/NavigationBar';
-import { Context } from "../../";
-// import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import { Context } from "../../";
 
 import './LoginPageStyle.css'
 
 const LoginPage = () => {
     const [email, setEmail] = useState([]);
     const [password, setPassword] = useState([]);
-    const [error/*, setError*/] = useState('');
+    const [error, setError] = useState('');
     const { store } = useContext(Context)
-
     let navigate = useNavigate();
 
     const loginFunc = async event => {
         event.preventDefault();
-        store.login(email, password);
-        navigate('/home');
+        const aboba = await store.login(email, password);
+
+        if (aboba !== undefined) {
+            setError(aboba.response.data.message)
+        }
+        else {
+            navigate('/home');
+        }
     }
 
     return (
@@ -38,6 +42,7 @@ const LoginPage = () => {
                 <div className='auth_error'>{error}</div>
 
                 <div className='auth_link'><a href="/reset_password">Forget your password?</a></div>
+                <div className='auth_link'><a href="/signup">Don't have an account?</a></div>
                 <div className='aboba'><button className='auth_button' onClick={loginFunc}>Log In</button></div>
             </form>
         </div>

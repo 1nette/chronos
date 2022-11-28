@@ -1,28 +1,22 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import './style.css'
 import HomePage from './views/HomePage/HomePage';
 import LoginPage from './views/LoginPage/LoginPage';
+import SignupPage from './views/SignupPage/SignupPage';
 import ResetPasswordPage from './views/ResetPasswordPage/ResetPasswordPage';
 import EditUserPage from './views/EditUserPage/EditUserPage';
 import NewEventPage from './views/NewEventPage/NewEventPage';
-import { useNavigate } from 'react-router-dom';
 
 const { Routes, Route } = require('react-router-dom');
 
 function App() {
-  let navigate = useNavigate();
-  useEffect(() => {
-    if (localStorage.getItem('token') == null) {
-      navigate('/');
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
   return (
     <div className="App">
       <Routes>
-        <Route path='/' element={<LoginPage />} />
+        <Route path='/' element={localStorage.getItem('token') == null ? <LoginPage /> : <HomePage />} />
+        <Route path='/login' element={<LoginPage />} />
+        <Route path='/signup' element={<SignupPage />} />
         <Route path='/home' element={<HomePage />} />
         <Route path='/editprofile' element={<EditUserPage />} />
         <Route path='/newevent' element={<NewEventPage />} />

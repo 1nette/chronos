@@ -11,7 +11,7 @@ const NavigationBar = ({ isUserLogged }) => {
 
     return (
         <div className='nav_bar_box'>
-            <div className='logo' onClick={() => { navigate('/home') }}>
+            <div className='logo' onClick={() => { navigate('/') }}>
                 <img src={caler} alt="logo" className='logo' />
                 <p>CHRONOS</p>
             </div>

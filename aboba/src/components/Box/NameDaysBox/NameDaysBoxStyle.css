@@ -1,6 +1,7 @@
 .name_day_b {
   display: flex;
   flex-direction: row;
+  user-select: none;
   background-color: chocolate;
   width: 82%;
   margin: 3% 4% 0 4%;

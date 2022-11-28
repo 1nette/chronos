@@ -11,7 +11,7 @@ const DaysList = ({ classBoxDay, daysArray, classHoverDay, month }) => {
     // }
     return (
         <div className={classBoxDay}>
-            {daysArray.map((dayItem, i) => (
+            {daysArray.map((dayItem) => (
                 <DayBox key={dayItem.format('DDMMYYYY')} dayItem={dayItem} classHoverDay={classHoverDay} month={month} />
             ))
             }

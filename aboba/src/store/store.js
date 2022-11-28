@@ -34,6 +34,7 @@ export default class Store {
             this.setUser(response.data.user)
         } catch (e) {
             console.log(e.response?.data?.message)
+            return (e)
         }
     }
 
@@ -45,6 +46,7 @@ export default class Store {
             this.setUser(response.data.user)
         } catch (e) {
             console.log(e.response?.data?.message)
+            return (e)
         }
     }
 
