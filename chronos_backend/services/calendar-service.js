@@ -4,11 +4,11 @@ const CalendarDto = require('../dtos/calendar-dtos')
 const { isObjectIdOrHexString } = require('mongoose')
 
 class CalendarService {
-    async newCalendar(title, refreshToken){
+    async newCalendar(title, refreshToken, color){
         // const creator = await UserModel.findOne({refreshToken})
         const userDto = TokenService.validateRefreshToken(refreshToken)
         console.log(userDto.id)
-        const calendar = await CalendarModel.create({title: title, owner: userDto.id})
+        const calendar = await CalendarModel.create({title: title, owner: userDto.id, color: color})
         const calendarDto = new CalendarDto(calendar)
         return {calendar: calendarDto}
     }

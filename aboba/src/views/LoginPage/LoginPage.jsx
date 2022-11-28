@@ -38,7 +38,6 @@ const LoginPage = () => {
                 <div className='auth_error'>{error}</div>
 
                 <div className='auth_link'><a href="/reset_password">Forget your password?</a></div>
-                {console.log(email, password)}
                 <div className='aboba'><button className='auth_button' onClick={loginFunc}>Log In</button></div>
             </form>
         </div>

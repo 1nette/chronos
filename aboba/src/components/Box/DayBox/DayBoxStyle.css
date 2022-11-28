@@ -15,6 +15,9 @@
   width: 15%;
   padding: 8% 5%;
   border-radius: 50%;
+  font-family: "Lobster Two", cursive;
+  font-weight: 300;
+  font-size: 1rem;
 }
 .active_day_db {
   background-color: rgb(118, 175, 118);

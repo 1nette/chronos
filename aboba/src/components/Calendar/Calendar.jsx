@@ -22,7 +22,6 @@ const Calendar = () => {
 
     const daysArray = [...Array(42)].map(() => nowDay.add(1, 'day').clone())
     const lastMonth = () => {
-        console.log(nowMoment.format('YYYY'))
         if ((Number(nowMoment.format('YYYY')) === 2000 && Number(nowMoment.format('MM')) > 1) || Number(nowMoment.format('YYYY')) > 2000)
             setNowMoment(prev => prev.clone().subtract(1, 'month'))
     }

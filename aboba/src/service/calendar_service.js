@@ -1,18 +1,10 @@
-const moment = require("moment")
+import $api from '../http/index'
 
-class CalendarService {
-
-    constructor() {
-        moment.updateLocale('en', { week: { dow: 1 } })
-        const startDay = moment().startOf('month').startOf('week')
-        const endDay = moment().endOf('month').endOf('week')
-        const calendar = [];
-        const nowDay = startDay.clone()
-        while (!nowDay.isAfter(endDay)) {
-            calendar.push(nowDay.clone())
-            nowDay.add(1, 'day')
-        }
-        return calendar
+export default class CalendarService {
+    static async getAll() {
+        return $api.get('/getCalendar')
+    }
+    static async newCalendar(title,color) {
+        return $api.post('/newCalendar',{title,color})
     }
 }
-module.exports = new CalendarService()

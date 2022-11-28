@@ -1,5 +1,6 @@
 import { makeAutoObservable } from 'mobx'
 import AuthService from '../service/auth_service';
+import CalService from '../service/calendar_service';
 import axios from 'axios';
 import { API_URL } from '../http';
 // import { useNavigate } from 'react-router-dom';
@@ -13,6 +14,7 @@ export default class Store {
     constructor() {
         makeAutoObservable(this);
     }
+
     setAuth(bool) {
         this.isAuth = bool
     }
@@ -25,10 +27,8 @@ export default class Store {
         this.isLoading = bool
     }
     async login(email, password) {
-        console.log("ABOBA")
         try {
             const response = await AuthService.login(email, password)
-            console.log(response)
             localStorage.setItem('token', response.data.accessToken)
             this.setAuth(true)
             this.setUser(response.data.user)
@@ -40,7 +40,6 @@ export default class Store {
     async registration(email, password) {
         try {
             const response = await AuthService.registration(email, password)
-            console.log(response)
             localStorage.setItem('token', response.data.accessToken)
             this.setAuth(true)
             this.setUser(response.data.user)
@@ -51,8 +50,7 @@ export default class Store {
 
     async logout() {
         try {
-            const response = await AuthService.logout()
-            console.log(response)
+            await AuthService.logout()
             localStorage.removeItem('token')
             this.setAuth(false)
             this.setUser({})
@@ -73,6 +71,24 @@ export default class Store {
 
         } finally {
             this.setLoading(false)
+        }
+    }
+    async newCalendar(title,color) {
+        try {
+            return await CalService.newCalendar(title,color)
+
+        } catch (e) {
+            console.log(e.response?.data?.message)
+        }
+
+    }
+
+    async getCalendars() {
+        try {
+            const response = await CalService.getAll()
+            return response.data
+        } catch (e) {
+            console.log(e.response?.data?.message)
         }
     }
 }

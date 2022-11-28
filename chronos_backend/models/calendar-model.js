@@ -4,7 +4,8 @@ const CalendarSchema = new Schema({
     title: {type: String, required: true},
     owner:{type: Schema.Types.ObjectId, ref: 'User', required: true},
     members: {type: Schema.Types.ObjectId, ref: 'User', required: false},
-    inviteLink: {type: String, required: false, default: ""},
+    color: {type: String, required: false},
+    inviteLink: {type: String, required: false, unique: false},
     event:{type: Schema.Types.ObjectId, ref: 'Comment'}  
 })
 

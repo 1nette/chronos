@@ -1,17 +1,17 @@
 import React from 'react';
 
 import { Link } from 'react-router-dom';
-import './EventButtonStyle.css'
+import './SettingsButtonStyle.css'
 import eventIcon from "../../../assets/calendar/FormEvent/contract.png"
 
-const EventButton = () => {
+const SettingsButton = () => {
     return (
-        <Link to='/newevent'>
-            <div className='event_button'>
+        <Link to='/settingscalendar'>
+            <div className='settings_button'>
                 <img src={eventIcon} alt='aboba' className='event_button_img' />
             </div>
         </Link>
 
     )
 }
-export default EventButton
+export default SettingsButton

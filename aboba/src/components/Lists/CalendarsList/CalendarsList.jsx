@@ -1,24 +1,23 @@
-import React, { useState/*, useEffect*/ } from 'react';
-// import axios from 'axios'
+import React, { useState, useEffect, useContext } from 'react';
 import ChangeCalendarCircle from '../../Button/CircleButton/ChangeCalendarCircle';
 import NewCalendarCircle from '../../Button/CircleButton/NewCalendarCircle';
 import NewCalendarForm from '../../Forms/NewCalendarForm/NewCalendarForm';
+import { Context } from "../../../";
 
 import './CalendarsListStyle.css'
 
 const CalendarsList = () => {
     const [isNewCalFormShown, setIsNewCalFormShown] = useState(false);
-    const [calendarsArray/*, setCalendarsArray*/] = useState([]);
+    const [calendarsArray, setCalendarsArray] = useState([]);
+    const { store } = useContext(Context)
 
-    // useEffect(() => {
-    //     async function getCalendars() {
-    //         const response = await axios.get(`http://localhost:8000/api/getCalendar`);
-    //         setCalendarsArray(response.data);
-    //         console.log(response.data);
-    //         console.log(response);
-    //     }
-    //     getCalendars()
-    // }, [])
+    useEffect(() => {
+        async function getCalendars() {
+            const aboba = await store.getCalendars();
+            setCalendarsArray(aboba);
+        }
+        getCalendars()
+    }, [store])
 
     return (
         <div className='calendars_box'>
@@ -28,6 +27,7 @@ const CalendarsList = () => {
                     <ChangeCalendarCircle info={calendar} key={index} />
                 )}
             </div>
+
             <NewCalendarForm isNewCalFormShown={isNewCalFormShown} />
         </div>
     )
