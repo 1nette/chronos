@@ -1,14 +1,14 @@
 import React from 'react';
-import NewEventsForm from '../../components/Forms/Event/NewEventsForm';
+import SettingsCalendarForm from '../../components/Forms/Settings/SettingsCalendarForm'
 import NavigationBar from '../../components/Navigation/NavigationBar';
 
 
-const NewEventPage = () => {
+const SettingsCalendarsPage = () => {
     return (
         <div className='home_page_hp'>
             <NavigationBar isUserLogged={true} />
-            <NewEventsForm />
+            <SettingsCalendarForm />
         </div>
     )
 }
-export default NewEventPage
+export default SettingsCalendarsPage

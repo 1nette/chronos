@@ -6,6 +6,7 @@ import SignupPage from './views/SignupPage/SignupPage';
 import ResetPasswordPage from './views/ResetPasswordPage/ResetPasswordPage';
 import EditUserPage from './views/EditUserPage/EditUserPage';
 import NewEventPage from './views/NewEventPage/NewEventPage';
+import SettingsCalendarsPage from './views/SettingsCalendarsPage/SettingsCalendarsPage';
 
 const { Routes, Route } = require('react-router-dom');
 
@@ -20,7 +21,7 @@ function App() {
         <Route path='/home' element={<HomePage />} />
         <Route path='/editprofile' element={<EditUserPage />} />
         <Route path='/newevent' element={<NewEventPage />} />
-        <Route path='/settingscalendar' element={<NewEventPage />} />
+        <Route path='/settingscalendar' element={<SettingsCalendarsPage />} />
         <Route path='/reset_password' element={<ResetPasswordPage />} />
       </Routes>
     </div>
