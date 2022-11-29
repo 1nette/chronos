@@ -3,6 +3,7 @@ const userController = require('../controllers/user-controller')
 const { body } = require('express-validator')
 const authMiddleware = require('../middleware/auth-middleware');
 const CalendarController = require('../controllers/calendar-controller');
+const EventController = require('../controllers/event-controller')
 const router = new Router()
 
 router.post('/registration',
@@ -17,5 +18,9 @@ router.get('/refresh', userController.refresh)
 router.post('/newCalendar', CalendarController.newCalendar)
 router.get('/getCalendar', CalendarController.getCalendar)
 router.delete('/removeCalendar', CalendarController.removeCalendar)
+router.post('/newEvent', EventController.newEvent)
+router.get('/getEvent', EventController.getEvents)
+router.delete('/removeEvent', EventController.removeEvent)
+router.post('/updEvent', EventController.updEvent)
 
 module.exports = router

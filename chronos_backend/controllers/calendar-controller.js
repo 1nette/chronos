@@ -4,9 +4,8 @@ class CalendarController {
     async newCalendar(req, res, next) {
         try {
             const { title, color } = req.body
-            console.log(req)
             const refreshToken = req.cookies.refreshToken
-            const calendar = await CalendarService.newCalendar(title, refreshToken, color)
+            const calendar = await CalendarService.newCalendar(title, color, refreshToken)
             return res.json(calendar)
             //const response = async 
         } catch (e) {
