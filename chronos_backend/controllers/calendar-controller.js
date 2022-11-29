@@ -4,9 +4,9 @@ const CalendarService = require("../services/calendar-service")
 class CalendarController {
     async newCalendar(req, res, next){
         try{
-            const {title} = req.body
+            const {title, color} = req.body
             const refreshToken = req.cookies.refreshToken
-            const calendar = await CalendarService.newCalendar(title, refreshToken)
+            const calendar = await CalendarService.newCalendar(title, color, refreshToken)
             return res.json(calendar)
             //const response = async 
         } catch(e){
