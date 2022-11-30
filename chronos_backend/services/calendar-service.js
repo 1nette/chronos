@@ -39,9 +39,12 @@ class CalendarService {
         const members_id = CalendarModel.findById(id).members
         let members = []
         members.push(owner)
-        members_id.array.forEach(async element => {
-            members.push(await UserModel.findById(element))
-        });
+        if(members_id){
+            members_id.array.forEach(async element => {
+                members.push(await UserModel.findById(element))
+            });
+        }
+        
         return members
     }
 }
