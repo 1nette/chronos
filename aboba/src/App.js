@@ -1,5 +1,4 @@
 import React from 'react'
-import './style.css'
 import HomePage from './views/HomePage/HomePage';
 import LoginPage from './views/LoginPage/LoginPage';
 import SignupPage from './views/SignupPage/SignupPage';
@@ -8,10 +7,11 @@ import EditUserPage from './views/EditUserPage/EditUserPage';
 import NewEventPage from './views/NewEventPage/NewEventPage';
 import SettingsCalendarsPage from './views/SettingsCalendarsPage/SettingsCalendarsPage';
 
+import './style.css'
+
 const { Routes, Route } = require('react-router-dom');
 
 function App() {
-
   return (
     <div className="App">
       <Routes>

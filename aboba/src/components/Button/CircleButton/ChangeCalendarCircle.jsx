@@ -1,14 +1,23 @@
 import React, { useState } from 'react';
 import calendarImage from "../../../assets/calendar/calendar.png"
 
-const ChangeCalendarCircle = ({info}) => {
+const ChangeCalendarCircle = ({ info }) => {
     const [isShown, setIsShown] = useState(true);
 
     const showHide = event => {
-        if (isShown)
+        let activeCals = localStorage.getItem('active_cals').split(',');
+        let index = activeCals.indexOf(info._id);
+
+        if (isShown) {
             setIsShown(false);
-        else
+            activeCals.splice(index, 1);
+        }
+        else {
             setIsShown(true);
+            activeCals.push(info._id);
+        }
+
+        localStorage.setItem('active_cals', activeCals);
     }
 
     return (
