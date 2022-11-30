@@ -8,7 +8,6 @@ import ArrowLeft from '../../Button/Arrows/ArrowLeft';
 
 import './SettingsCalendarFromStyle.css'
 
-
 const SettingsCalendarForm = () => {
 
     const [calName, setCalName] = useState('');
@@ -23,9 +22,6 @@ const SettingsCalendarForm = () => {
         }
         getCalendars()
     }, [store])
-
-
-
 
     const [isDropdownShownCals, setisDropdownShownCals] = useState(false);
 

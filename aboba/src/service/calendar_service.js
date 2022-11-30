@@ -7,4 +7,7 @@ export default class CalendarService {
     static async newCalendar(title,color) {
         return $api.post('/newCalendar',{title,color})
     }
+    static async remCalendar(id) {
+        return $api.delete('/removeCalendar', { id })
+    }
 }
