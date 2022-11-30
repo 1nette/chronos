@@ -23,5 +23,6 @@ router.post('/newEvent', EventController.newEvent)
 router.get('/getEvent', EventController.getEvents)
 router.delete('/removeEvent', EventController.removeEvent)
 router.post('/updEvent', EventController.updEvent)
+router.get('/getMembers', CalendarController.getMembers)
 
 module.exports = router
