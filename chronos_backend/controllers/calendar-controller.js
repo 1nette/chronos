@@ -39,6 +39,7 @@ class CalendarController {
             const { id } = req.body
             const refreshToken = req.cookies.refreshToken
             const members = await CalendarService.getMembers(id, refreshToken)
+            console.log(members)
             return res.json(members)
         } catch(e){
             console.log(e)
