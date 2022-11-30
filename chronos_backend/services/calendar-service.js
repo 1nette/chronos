@@ -1,5 +1,6 @@
 const CalendarModel = require('../models/calendar-model')
 const TokenService = require('./token-service')
+const UserModel = require('../models/user-model')
 const CalendarDto = require('../dtos/calendar-dtos')
 const { isObjectIdOrHexString } = require('mongoose')
 
@@ -27,10 +28,21 @@ class CalendarService {
         console.log(refreshToken)
         const userDto =  TokenService.validateRefreshToken(refreshToken)
         console.log(userDto)
-        const calendar = await CalendarModel.find({"owner": userDto.id})
+        const calendar = await CalendarModel.find({owner: userDto.id})
         console.log(calendar)
         //console.log(post)
         return calendar
+    }
+    async getMembers(id, refreshToken){
+        const userDto =  TokenService.validateRefreshToken(refreshToken)
+        const owner = CalendarModel.find({owner: userDto.id})
+        const members_id = CalendarModel.findById(id).members
+        let members = []
+        members.push(owner)
+        members_id.array.forEach(async element => {
+            members.push(await UserModel.findById(element))
+        });
+        return members
     }
 }
 
