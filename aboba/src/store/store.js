@@ -7,7 +7,7 @@ import { API_URL } from '../http';
 
 
 export default class Store {
-    user = {}
+    user = { id: '', email: '', activated: false }
     isAuth = false;
     isLoading = false;
 
@@ -19,8 +19,10 @@ export default class Store {
         this.isAuth = bool
     }
 
-    setUser(user) {
-        this.user = user
+    setUser(email, id, activated) {
+        this.user.id = id
+        this.user.email = email
+        this.user.activated = activated
     }
 
     setLoading(bool) {
@@ -30,8 +32,10 @@ export default class Store {
         try {
             const response = await AuthService.login(email, password)
             localStorage.setItem('token', response.data.accessToken)
+            // console.log(response)
             this.setAuth(true)
-            this.setUser(response.data.user)
+            this.setUser(response.data.user.email, response.data.user.id, response.data.user.activated)
+
         } catch (e) {
             console.log(e.response?.data?.message)
             return (e)
@@ -43,7 +47,8 @@ export default class Store {
             const response = await AuthService.registration(email, password)
             localStorage.setItem('token', response.data.accessToken)
             this.setAuth(true)
-            this.setUser(response.data.user)
+            this.setUser(response.data.user.email, response.data.user.id, response.data.user.activated)
+
         } catch (e) {
             console.log(e.response?.data?.message)
             return (e)
@@ -68,23 +73,24 @@ export default class Store {
             //console.log(response);
             localStorage.setItem('token', response.data.accessToken)
             this.setAuth(true)
-            this.setUser(response.data.user)
+            this.setUser(response.data.user.email, response.data.user.id, response.data.user.activated)
         } catch (e) {
 
         } finally {
             this.setLoading(false)
         }
     }
-    async newCalendar(title,color) {
+
+    //--------------------------------------------CALENDAR----------------------------
+    async newCalendar(title, color) {
         try {
-            return await CalService.newCalendar(title,color)
+            return await CalService.newCalendar(title, color)
 
         } catch (e) {
             console.log(e.response?.data?.message)
         }
 
     }
-
     async getCalendars() {
         try {
             const response = await CalService.getAll()
@@ -93,4 +99,21 @@ export default class Store {
             console.log(e.response?.data?.message)
         }
     }
+    async updateCalendar(id, title, color) {
+        try {
+            const response = await CalService.upCalendar(id, title, color)
+            return response.data
+        } catch (e) {
+            console.log(e.response?.data?.message)
+        }
+    }
+
+    async removeCalendar(id) {
+        try {
+            await CalService.remCalendar(id)
+        } catch (e) {
+            console.log(e.response?.data?.message)
+        }
+    }
+
 }
