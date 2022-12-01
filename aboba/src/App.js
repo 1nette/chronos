@@ -1,4 +1,7 @@
 import React from 'react'
+import { useContext, useEffect } from 'react';
+import { Context } from '.';
+import './style.css'
 import HomePage from './views/HomePage/HomePage';
 import LoginPage from './views/LoginPage/LoginPage';
 import SignupPage from './views/SignupPage/SignupPage';
@@ -12,6 +15,13 @@ import './style.css'
 const { Routes, Route } = require('react-router-dom');
 
 function App() {
+  const { store } = useContext(Context)
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      store.checkAuth()
+    }
+  }, [store])
+
   return (
     <div className="App">
       <Routes>

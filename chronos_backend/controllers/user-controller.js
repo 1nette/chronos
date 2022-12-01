@@ -20,7 +20,6 @@ class UserController {
     }
 
     async login(req, res, next) {
-        console.log(req)
         try {
             const { email, password } = req.body
             const userData = await UserServices.login(email, password)

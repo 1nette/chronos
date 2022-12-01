@@ -1,11 +1,11 @@
 .form_sc {
   margin-top: 5%;
   margin-left: -10%;
-  width: 50%;
-  height: 60%;
+  width: 100%;
+  height: 80%;
   background-color: var(--color-4);
   border-radius: 40px;
-  padding: 2% 5%;
+  padding: 2% 5% 1% 5%;
 }
 .back_page {
   width: 40%;
@@ -63,19 +63,31 @@
 .box_arrow_sc {
   width: 20%;
 }
-.cal_input_sc {
+.box_input_name_sc {
+  width: 100%;
+}
+.cal_input_sc,
+.cal_input2_sc {
   margin: 0 3%;
   width: 30%;
   border-bottom: 1px solid var(--color-1);
+}
+.cal_input2_sc {
+  margin: 2% 0 1% 3%;
+
+  width: 47.5%;
 }
 .color_sc {
   width: 10%;
   border-radius: 20px;
 }
+.head_sc {
+  height: 13.5%;
+}
 .cal_box_hidden {
-  top: 46.5%;
-  width: 15.5%;
-  left: 47.5%;
+  top: 48.3%;
+  width: 16.5%;
+  left: 38.3%;
   height: 15vh;
   overflow-y: scroll;
   font-family: "Lobster Two", cursive;
@@ -86,4 +98,27 @@
 
   background-color: rgba(77, 82, 82, 0.484);
   z-index: 5;
+}
+.box_peoples_sc {
+  width: 30%;
+  height: 100%;
+}
+
+.button_event_sc {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Lobster Two", cursive;
+  font-weight: 300;
+  font-size: 0.8rem;
+}
+.link_share_sc {
+  margin: 3.5% 0;
+}
+.error_message_sc {
+  margin-left: 15%;
+  font-size: 0.6rem;
+  color: rgba(178, 56, 56, 0.619);
 }
