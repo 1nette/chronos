@@ -3,13 +3,14 @@ const TokenService = require('./token-service')
 const UserModel = require('../models/user-model')
 const CalendarDto = require('../dtos/calendar-dtos')
 const { isObjectIdOrHexString } = require('mongoose')
+const uuid = require('uuid')
 
 class CalendarService {
     async newCalendar(title, color, refreshToken){
         // const creator = await UserModel.findOne({refreshToken})
         const userDto = TokenService.validateRefreshToken(refreshToken)
-        console.log(userDto.id)
-        const calendar = await CalendarModel.create({title: title, color: color, owner: userDto.id})
+        const inviteLink = uuid.v4()
+        const calendar = await CalendarModel.create({title: title, color: color, owner: userDto.id, inviteLink: inviteLink})
         const calendarDto = new CalendarDto(calendar)
         return {calendar: calendarDto}
     }

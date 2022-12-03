@@ -46,6 +46,16 @@ class CalendarController {
             console.log(e)
         }
     }
+
+    async addNewMember(req, res, next){
+        try{
+            const {id, email} = req.body
+            const refreshToken = req.cookies.refreshToken
+            const inviteInfo = 
+        } catch(e){
+            console.log(e)
+        }
+    }
 }
 
 module.exports = new CalendarController()

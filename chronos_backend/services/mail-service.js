@@ -28,7 +28,21 @@ class MailService {
                 `
         })
     }
-
+    async sendInvite(to, link){
+        await this.transporter.sendMail({
+            from: process.env.MAIL_USER,
+            to,
+            subject: 'U have been invited to new calendar, BOII',
+            text: '',
+            html:
+                `
+                    <div>
+                        <h1>Click here to accept invite</h1>
+                        <a href="${link}">${link}</a>
+                    </div>
+                `
+        })
+    }
 }
 
 module.exports = new MailService()

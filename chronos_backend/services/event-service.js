@@ -37,6 +37,9 @@ class EventService {
         }
         return
     }
+    async addNewMember(id, email, refreshToken){
+        
+    }
 }
 
 module.exports = new EventService()
