@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import calendarImage from "../../../assets/calendar/calendar.png"
 
-const ChangeCalendarCircle = ({ info }) => {
+const ChangeCalendarCircle = ({ info, setCheckEvents }) => {
     const [isShown, setIsShown] = useState(true);
 
     const showHide = event => {
@@ -9,37 +9,18 @@ const ChangeCalendarCircle = ({ info }) => {
         let index = activeCals.indexOf(info._id);
 
         if (isShown) {
+            setCheckEvents(info._id + 'false')
             setIsShown(false);
             activeCals.splice(index, 1);
         }
         else {
+            setCheckEvents(info._id + 'true')
             setIsShown(true);
             activeCals.push(info._id);
         }
 
         localStorage.setItem('active_cals', activeCals);
     }
-    // const showHide = event => {
-    //     let activeCals = localStorage.getItem('active_cals');
-
-    //     if (isShown) {
-    //         let activeCals = activeCals.split(',');
-    //         let index = activeCals.indexOf(info._id);
-
-    //         setIsShown(false);
-    //         activeCals.splice(index, 1);
-    //     }
-    //     else {
-    //         if (activeCals === null)
-    //             activeCals = []
-
-    //         setIsShown(true);
-    //         activeCals.push(info._id);
-    //     }
-
-    //     localStorage.setItem('active_cals', activeCals);
-    //     window.location.reload();
-    // }
 
     useEffect(() => {
         let activeCals = localStorage.getItem('active_cals');

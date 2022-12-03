@@ -6,7 +6,7 @@ import { Context } from "../../../";
 
 import './CalendarsListStyle.css'
 
-const CalendarsList = () => {
+const CalendarsList = ({ setCheckEvents }) => {
     const [isNewCalFormShown, setIsNewCalFormShown] = useState(false);
     const [calendarsArray, setCalendarsArray] = useState([]);
     const { store } = useContext(Context)
@@ -30,7 +30,7 @@ const CalendarsList = () => {
             <NewCalendarCircle isNewCalFormShown={isNewCalFormShown} setIsNewCalFormShown={setIsNewCalFormShown} />
             <div className='calendars_list_box' >
                 {calendarsArray.map((calendar, index) =>
-                    <ChangeCalendarCircle info={calendar} key={index} />
+                    <ChangeCalendarCircle info={calendar} key={index} setCheckEvents={setCheckEvents} />
                 )}
             </div>
 

@@ -10,7 +10,7 @@ import './CalendarStyle.css'
 import ChangeCalendarViewSelect from '../Selects/Calendar/ChangeCalendarViewSelect';
 import DaysWeekList from '../Lists/DaysList/DaysWeekList';
 
-const Calendar = () => {
+const Calendar = ({ checkEvents }) => {
     moment.updateLocale('en', { week: { dow: 1 } })
     const [classSeason, setClassSeason] = useState('header_calendar_c')
     const [classBoxDay, setClassBoxDay] = useState('days_list_dl')
@@ -23,10 +23,7 @@ const Calendar = () => {
 
     const [nowMoment, setNowMoment] = useState(moment())
     const startDay = nowMoment.clone().startOf('month').startOf('week')
-    // console.log(nowMoment.clone().endOf('week'))
     const currentDay = moment()
-    // const endDay = moment().endOf('month').endOf('week')
-    // const totallDay = 42
     const nowDay = startDay.clone().subtract(1, 'day')
 
     const daysArray = [...Array(42)].map(() => nowDay.add(1, 'day').clone())
@@ -46,7 +43,7 @@ const Calendar = () => {
     useEffect(() => {
         async function getEvents() {
             const aboba = localStorage.getItem("active_cals")
-            if (aboba !== null) {
+            if (aboba !== null && aboba !== '') {
                 const calIds = aboba.slice(1).split(',')
                 let events = (await store.getEvents(calIds[0])).data.events;
                 for (let i = 1; i < calIds.length; i++) {
@@ -65,9 +62,11 @@ const Calendar = () => {
                 });
                 setEventsArray(array);
             }
+            else
+                setEventsArray([])
         }
         getEvents()
-    }, [nowMoment])
+    }, [nowMoment, checkEvents])
 
     return (
         <div className='calendar_box_c'>
