@@ -36,7 +36,6 @@ export default class Store {
             // console.log(response)
             this.setAuth(true)
             this.setUser(response.data.user.email, response.data.user.id, response.data.user.activated)
-
         } catch (e) {
             console.log(e.response?.data?.message)
             return (e)

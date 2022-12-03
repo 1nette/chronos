@@ -3,11 +3,11 @@ import DayBox from '../../Box/DayBox/DayBox';
 
 import './DaysListStyle.css'
 
-const DaysList = ({ classBoxDay, daysArray, classHoverDay, month }) => {
+const DaysList = ({ eventsArray, classBoxDay, daysArray, classHoverDay, month }) => {
     return (
         <div className={classBoxDay}>
             {daysArray.map((dayItem) => (
-                <DayBox key={dayItem.format('DDMMYYYY')} dayItem={dayItem} classHoverDay={classHoverDay} month={month} />
+                <DayBox key={dayItem.format('DDMMYYYY')} eventsArray={eventsArray} dayItem={dayItem} classHoverDay={classHoverDay} month={month} />
             ))
             }
         </div>

@@ -17,7 +17,7 @@ class EventController {
     
     async getEvents(req, res, next){
         try{
-            const {id} = req.body
+            const {id} = req.params
             const refreshToken = req.cookies.refreshToken
             const events = await EventService.getEvents(id, refreshToken)
             return res.json(events)

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import calendarImage from "../../../assets/calendar/calendar.png"
 
 const ChangeCalendarCircle = ({ info }) => {
@@ -6,7 +6,7 @@ const ChangeCalendarCircle = ({ info }) => {
 
     const showHide = event => {
         let activeCals = localStorage.getItem('active_cals').split(',');
-        let index = activeCals.indexOf(info._id);
+        let index = activeCals.indexOf(info._id)
 
         if (isShown) {
             setIsShown(false);
@@ -18,7 +18,16 @@ const ChangeCalendarCircle = ({ info }) => {
         }
 
         localStorage.setItem('active_cals', activeCals);
+        window.location.reload();
     }
+
+    useEffect(() => {
+        let activeCals = localStorage.getItem('active_cals').split(',');
+        let index = activeCals.indexOf(info._id);
+        if (index === -1) {
+            setIsShown(false);
+        }
+    }, [])
 
     return (
         <div>

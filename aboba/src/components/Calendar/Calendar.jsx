@@ -18,11 +18,12 @@ const Calendar = () => {
     const [classHoverDay, setHoverDay] = useState('day_box_db ')
     const [nameDayType, setNameDayType] = useState(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'])
     const [nowType, setNowType] = useState('month')
+    const [eventsArray, setEventsArray] = useState([])
     const { store } = useContext(Context)
 
     const [nowMoment, setNowMoment] = useState(moment())
     const startDay = nowMoment.clone().startOf('month').startOf('week')
-    console.log(nowMoment.clone().endOf('week'))
+    // console.log(nowMoment.clone().endOf('week'))
     const currentDay = moment()
     // const endDay = moment().endOf('month').endOf('week')
     // const totallDay = 42
@@ -42,10 +43,29 @@ const Calendar = () => {
         setNowMoment(prev => prev.clone().set('year', year))
     }
 
-    // useEffect(() => {
-    //     const calIds = 
-    //     const aboba = await store.getEvents();
-    // }, [store])
+    useEffect(() => {
+        async function getEvents() {
+            const aboba = localStorage.getItem("active_cals")
+            const calIds = aboba.slice(1).split(',')
+            let events = (await store.getEvents(calIds[0])).data.events;
+            for (let i = 1; i < calIds.length; i++) {
+                events = events.concat((await store.getEvents(calIds[i])).data.events);
+            }
+
+            let array = [0];
+            events.forEach(event => {
+                if (event.data_start.slice(5, 7) === nowMoment.format('MM')) {
+                    let startDate = Number(event.data_start.slice(8, 10)), endDate = Number(event.data_end.slice(8, 10));
+                    while (startDate <= endDate) {
+                        array.push(startDate);
+                        startDate++;
+                    }
+                }
+            });
+            setEventsArray(array);
+        }
+        getEvents()
+    }, [nowMoment])
 
     return (
         <div className='calendar_box_c'>
@@ -58,7 +78,7 @@ const Calendar = () => {
             </div>
             <NameDaysBox classBoxNameDay={classBoxNameDay} nameDayType={nameDayType} />
             {nowType === 'month' ?
-                <DaysList classBoxDay={classBoxDay} daysArray={daysArray} classHoverDay={classHoverDay} month={nowMoment.format("MM")} />
+                <DaysList eventsArray={eventsArray} classBoxDay={classBoxDay} daysArray={daysArray} classHoverDay={classHoverDay} month={nowMoment.format("MM")} />
                 : nowType === 'week' ?
                     <DaysWeekList classBoxDay={classBoxDay} daysArray={daysArray} classHoverDay={classHoverDay} month={nowMoment.format("MM")} />
                     :
