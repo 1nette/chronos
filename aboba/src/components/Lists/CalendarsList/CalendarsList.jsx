@@ -6,7 +6,7 @@ import { Context } from "../../../";
 
 import './CalendarsListStyle.css'
 
-const CalendarsList = () => {
+const CalendarsList = ({ setCheckEvents }) => {
     const [isNewCalFormShown, setIsNewCalFormShown] = useState(false);
     const [calendarsArray, setCalendarsArray] = useState([]);
     const { store } = useContext(Context)
@@ -15,12 +15,11 @@ const CalendarsList = () => {
         async function getCalendars() {
             const aboba = await store.getCalendars();
             setCalendarsArray(aboba);
-
-            let array = [aboba[0]._id];
-            for (let i = 1; i < aboba.length; i++) {
-                array.push(aboba[i]._id);
-            }
-            localStorage.setItem('active_cals', array);
+            // let array = [aboba[0]._id];
+            // for (let i = 1; i < aboba.length; i++) {
+            //     array.push(aboba[i]._id);
+            // }
+            // localStorage.setItem('active_cals', array);
         }
         getCalendars()
     }, [store])
@@ -30,7 +29,7 @@ const CalendarsList = () => {
             <NewCalendarCircle isNewCalFormShown={isNewCalFormShown} setIsNewCalFormShown={setIsNewCalFormShown} />
             <div className='calendars_list_box' >
                 {calendarsArray.map((calendar, index) =>
-                    <ChangeCalendarCircle info={calendar} key={index} />
+                    <ChangeCalendarCircle info={calendar} key={index} setCheckEvents={setCheckEvents} />
                 )}
             </div>
 

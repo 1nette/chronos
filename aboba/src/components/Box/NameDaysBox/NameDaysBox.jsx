@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import ArrowLeft from '../../Button/Arrows/ArrowLeft';
 import ArrowRight from '../../Button/Arrows/ArrowRight';
 import './NameDaysBoxStyle.css'
+
 const NameDaysBox = ({ classBoxNameDay, nextDay, lastDay, nameDayType, nowType, lastWeek, nextWeek }) => {
 
 
@@ -32,6 +33,7 @@ const NameDaysBox = ({ classBoxNameDay, nextDay, lastDay, nameDayType, nowType, 
             }
 
         </div>
+
 
 
     )

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import EventButton from '../../components/Button/EventButton/EventButton';
 import Calendar from '../../components/Calendar/Calendar';
 import CalendarsList from '../../components/Lists/CalendarsList/CalendarsList';
@@ -7,12 +7,14 @@ import SettingsButton from '../../components/Button/SettingsButton/SettingsButto
 import './HomePageStyle.css'
 
 const HomePage = () => {
+    const [checkEvents, setCheckEvents] = useState('')
+
     return (
         <div className='home_page_hp'>
             <NavigationBar isUserLogged={true} />
             <div className='calendars_box_hp'>
-                <CalendarsList />
-                <Calendar />
+                <CalendarsList setCheckEvents={setCheckEvents} />
+                <Calendar checkEvents={checkEvents} />
             </div>
             <SettingsButton />
             <EventButton />

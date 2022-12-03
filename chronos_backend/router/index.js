@@ -20,9 +20,8 @@ router.post('/updataCalendar', CalendarController.updataCalendar)//-------------
 router.get('/getCalendar', CalendarController.getCalendar)//-----------------------------------*
 router.delete('/removeCalendar/:id', CalendarController.removeCalendar) //---------------------*
 
-
 router.post('/newEvent', EventController.newEvent)
-router.get('/getEvent', EventController.getEvents)
+router.get('/getEvent/:id', EventController.getEvents)
 router.delete('/removeEvent', EventController.removeEvent)
 router.post('/updEvent', EventController.updEvent)
 router.get('/getMembers', CalendarController.getMembers)

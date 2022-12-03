@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ArrowDown from '../../Button/Arrows/ArrowDown';
 import './SelectCalStyle.css'
 
-const ChangeCalendarViewSelect = ({ nowType, setNowType/*, setNameDayType, nowMoment */ }) => {
+const ChangeCalendarViewSelect = ({ nowType, setNowType, setNameDayType, nowMoment }) => {
     const typeArray = ['day', 'week', 'month'];
     const [isDropdownShown, setIsDropdownShown] = useState(false);
 
@@ -15,6 +15,7 @@ const ChangeCalendarViewSelect = ({ nowType, setNowType/*, setNameDayType, nowMo
             setIsDropdownShown(true);
         }
     }
+    
     return (
         <div className='year_select' onClick={showDropdown}>
             <p>type: {nowType}</p>

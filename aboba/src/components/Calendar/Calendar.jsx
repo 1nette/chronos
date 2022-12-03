@@ -11,9 +11,8 @@ import ChangeCalendarViewSelect from '../Selects/Calendar/ChangeCalendarViewSele
 import DaysWeekList from '../Lists/DaysList/DaysWeekList';
 import DayList from '../Lists/DaysList/DayList';
 
-const Calendar = () => {
+const Calendar = ({ checkEvents }) => {
     const { store } = useContext(Context)
-
     moment.updateLocale('en', { week: { dow: 1 } })
     const [classSeason, setClassSeason] = useState('header_calendar_c')
     const [classBoxDay, setClassBoxDay] = useState('days_list_dl')
@@ -21,14 +20,11 @@ const Calendar = () => {
     const [classHoverDay, setHoverDay] = useState('day_box_db ')
     const [nameDayType, setNameDayType] = useState(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'])
     const [nowType, setNowType] = useState('month')
-
-
+    const [eventsArray, setEventsArray] = useState([])
 
     const [nowMoment, setNowMoment] = useState(moment())
     const startDay = nowMoment.clone().startOf('month').startOf('week')
     const currentDay = moment()
-    // const endDay = moment().endOf('month').endOf('week')
-    // const totallDay = 42
     const nowDay = startDay.clone().subtract(1, 'day')
 
     const daysArray = [...Array(42)].map(() => nowDay.add(1, 'day').clone())
@@ -96,7 +92,32 @@ const Calendar = () => {
                 default: break;
             }
         }
-    }, [nowType, nowMoment])
+        async function getEvents() {
+            const aboba = localStorage.getItem("active_cals")
+            if (aboba !== null && aboba !== '') {
+                const calIds = aboba.slice(1).split(',')
+                let events = (await store.getEvents(calIds[0])).data.events;
+                for (let i = 1; i < calIds.length; i++) {
+                    events = events.concat((await store.getEvents(calIds[i])).data.events);
+                }
+
+                let array = [0];
+                events.forEach(event => {
+                    if (event.data_start.slice(5, 7) === nowMoment.format('MM')) {
+                        let startDate = Number(event.data_start.slice(8, 10)), endDate = Number(event.data_end.slice(8, 10));
+                        while (startDate <= endDate) {
+                            array.push(startDate);
+                            startDate++;
+                        }
+                    }
+                });
+                setEventsArray(array);
+            }
+            else
+                setEventsArray([])
+        }
+        getEvents()
+    }, [nowMoment, checkEvents, nowType])
 
     return (
         <div className='calendar_box_c'>
@@ -105,7 +126,7 @@ const Calendar = () => {
                     setClassBoxNameDay={setClassBoxNameDay} month={nowMoment.format("MMMM")}
                     lastMonth={lastMonth} nextMont={nextMont} setHoverDay={setHoverDay} />
                 <YearSelect nowYear={nowMoment.format("YYYY")} selectYear={selectYear} />
-                <ChangeCalendarViewSelect nowType={nowType} setNowType={setNowType} />
+                <ChangeCalendarViewSelect nowType={nowType} setNowType={setNowType} setNameDayType={setNameDayType} nowMoment={nowMoment} />
             </div>
             <NameDaysBox classBoxNameDay={classBoxNameDay} nextDay={nextDay} lastDay={lastDay}
                 nameDayType={nameDayType} nowType={nowType} lastWeek={lastWeek} nextWeek={nextWeek} />
