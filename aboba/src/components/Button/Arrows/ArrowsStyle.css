@@ -4,7 +4,7 @@
   background-color: var(--color-7);
   padding: 1vw 1vw 1vw 1vw;
   border-radius: 50%;
-  transition: 0.50s background-color;
+  transition: 0.5s background-color;
 }
 
 .arrow_down {

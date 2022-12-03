@@ -11,7 +11,6 @@ import PeopleList from '../../Lists/PeopleList/PeopleList';
 
 import './SettingsCalendarFromStyle.css'
 
-
 const SettingsCalendarForm = () => {
 
     const [calName, setCalName] = useState('');
@@ -23,10 +22,18 @@ const SettingsCalendarForm = () => {
     const [isAutor, setIsAutor] = useState('')
     const [error, setError] = useState('')
 
+    const { store } = useContext(Context)
 
     const [isDropdownShownCals, setisDropdownShownCals] = useState(false);
-    const { store } = useContext(Context)
     const idUs = toJS(store.user.id)
+
+    useEffect(() => {
+        async function getCalendars() {
+            const aboba = await store.getCalendars();
+            setCalendarsArray(aboba)
+        }
+        getCalendars()
+    }, [store])
 
 
     const showDropdown3 = event => {
@@ -94,9 +101,10 @@ const SettingsCalendarForm = () => {
                     <div className='head_sc'>
 
                     </div> :
-                    idUs !== isAutor ?
+                    idUs.toString() !== isAutor.toString() ?
                         < div className='row_f_sc'>
                             <button className='button_del_sc' onClick={removeCal}>Leave the calendar</button>
+                            {console.log(idUs, isAutor)}
                         </div>
                         :
                         <div className='row_f_sc'>

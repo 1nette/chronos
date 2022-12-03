@@ -15,7 +15,6 @@ router.post('/logout', userController.logout)
 router.get('/activation/:link', userController.activation)
 router.get('/refresh', userController.refresh)
 // router.get('/getMembers', authMiddleware,userController.getUsers)
-
 router.post('/newCalendar', CalendarController.newCalendar)
 router.post('/updataCalendar', CalendarController.updataCalendar)//----------------------------*
 router.get('/getCalendar', CalendarController.getCalendar)//-----------------------------------*
@@ -26,5 +25,6 @@ router.post('/newEvent', EventController.newEvent)
 router.get('/getEvent', EventController.getEvents)
 router.delete('/removeEvent', EventController.removeEvent)
 router.post('/updEvent', EventController.updEvent)
+router.get('/getMembers', CalendarController.getMembers)
 
 module.exports = router

@@ -6,6 +6,7 @@
   padding: 1vh 0 1vh 0;
   color: var(--color-1);
   width: 20%;
+  margin: 0 0 0 4%;
   border-radius: 20px;
   transition: 0.5s background-color;
 }
@@ -69,4 +70,17 @@
 .year_dropdown::-webkit-scrollbar-thumb {
   background-color: var(--color-2);
   border-radius: 20px;
+}
+
+.type {
+  display: flex;
+  flex-direction: column;
+  height: 21vh;
+  font-family: "Lobster Two", cursive;
+  font-weight: 300;
+  font-size: 1rem;
+  transition: 0.5s opacity, 0.55s visibility;
+  position: absolute;
+  top: 28.6%;
+  background-color: rgba(77, 82, 82, 0.484);
 }

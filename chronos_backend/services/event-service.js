@@ -17,10 +17,10 @@ class EventService {
         const event = await EventModel.deleteOne({_id: id})
         return event
     }
-    async getEvents(title, refreshToken){
+    async getEvents(id, refreshToken){
         const owner = TokenService.validateRefreshToken(refreshToken)
-        const calendar = await CalendarModel.findOne({title: title, owner: owner.id})
-        const events = await EventModel.find({calendar: calendar._id})
+        // const calendar = await CalendarModel.findOne({title: title, owner: owner.id})
+        const events = await EventModel.find({calendar: id})
         console.log(events)
         //console.log(post)
         return {events: events}

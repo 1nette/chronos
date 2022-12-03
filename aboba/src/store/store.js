@@ -1,6 +1,7 @@
 import { makeAutoObservable } from 'mobx'
 import AuthService from '../service/auth_service';
 import CalService from '../service/calendar_service';
+import EventService from '../service/event_service';
 import axios from 'axios';
 import { API_URL } from '../http';
 // import { useNavigate } from 'react-router-dom';
@@ -59,6 +60,7 @@ export default class Store {
         try {
             await AuthService.logout()
             localStorage.removeItem('token')
+            localStorage.removeItem('active_cals')
             this.setAuth(false)
             this.setUser({})
         } catch (e) {
@@ -89,7 +91,6 @@ export default class Store {
         } catch (e) {
             console.log(e.response?.data?.message)
         }
-
     }
     async getCalendars() {
         try {
@@ -116,4 +117,19 @@ export default class Store {
         }
     }
 
+    async newEvent(title, type, content, data_start, data_end, calendar) {
+        try {
+            return await EventService.newEvent(title, type, content, data_start, data_end, calendar)
+        } catch (e) {
+            console.log(e.response?.data?.message)
+        }
+    }
+
+    async getEvents(calId) {
+        try {
+            return await EventService.getEvents(calId)
+        } catch (e) {
+            console.log(e.response?.data?.message)
+        }
+    }
 }

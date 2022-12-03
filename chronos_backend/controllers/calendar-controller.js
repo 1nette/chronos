@@ -35,6 +35,18 @@ class CalendarController {
         }
     }
 
+    async getMembers(req, res, next){
+        try{
+            const { id } = req.body
+            const refreshToken = req.cookies.refreshToken
+            const members = await CalendarService.getMembers(id, refreshToken)
+            console.log(members)
+            return res.json(members)
+        } catch(e){
+            console.log(e)
+        }
+    }
+    
     async updataCalendar(req, res, next) {
         try {
             const { id, title, color } = req.body
@@ -45,7 +57,6 @@ class CalendarController {
             next(e)
         }
     }
-
 }
 
 module.exports = new CalendarController()

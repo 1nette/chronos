@@ -10,10 +10,11 @@ import EditUserPage from './views/EditUserPage/EditUserPage';
 import NewEventPage from './views/NewEventPage/NewEventPage';
 import SettingsCalendarsPage from './views/SettingsCalendarsPage/SettingsCalendarsPage';
 
+import './style.css'
+
 const { Routes, Route } = require('react-router-dom');
 
 function App() {
-
   const { store } = useContext(Context)
   useEffect(() => {
     if (localStorage.getItem('token')) {

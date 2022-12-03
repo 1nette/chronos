@@ -15,6 +15,4 @@ export default class CalendarService {
     static async remCalendar(id) {
         return $api.delete(`/removeCalendar/${id}`)
     }
-
-
 }
