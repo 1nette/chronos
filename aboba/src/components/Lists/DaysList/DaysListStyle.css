@@ -88,3 +88,12 @@
 .blue_dl {
   background-color: #d4ddfa;
 }
+.list_day_box_dl {
+  display: grid;
+  grid-template-columns: repeat(58, 1fr);
+  grid-template-rows: repeat(auto, 1fr);
+}
+.vl {
+  border-left: 6px solid green;
+  height: 500px;
+}

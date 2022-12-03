@@ -15,7 +15,6 @@ const CalendarsList = ({ setCheckEvents }) => {
         async function getCalendars() {
             const aboba = await store.getCalendars();
             setCalendarsArray(aboba);
-
             // let array = [aboba[0]._id];
             // for (let i = 1; i < aboba.length; i++) {
             //     array.push(aboba[i]._id);
