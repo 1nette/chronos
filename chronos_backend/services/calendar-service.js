@@ -33,24 +33,24 @@ class CalendarService {
         return calendar
     }
 
-    async getMembers(id, refreshToken){
-        const userDto =  TokenService.validateRefreshToken(refreshToken)
+    async getMembers(id, refreshToken) {
+        const userDto = TokenService.validateRefreshToken(refreshToken)
         const owner = await UserModel.findById(userDto.id)
-        const members_id = await CalendarModel.find({_id: id}).select('members')
+        const members_id = await CalendarModel.find({ _id: id }).select('members')
 
         console.log(members_id.members)
         //console.log(members_id)
         let members = []
         members.push(owner)
-        
-        for(let i = 0;i < members_id.length; i++){
-            const candidate  = await UserModel.findById(members_id[i].members)
+
+        for (let i = 0; i < members_id.length; i++) {
+            const candidate = await UserModel.findById(members_id[i].members)
             members.push(candidate)
         };
-        
+
         return members
     }
-    
+
     async updataCalendar(id, title, color, refreshToken) {
         const userDto = TokenService.validateRefreshToken(refreshToken)
         const calendar = await CalendarModel.findById(id)

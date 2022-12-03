@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import MonthSlider from '../Sliders/MonthSlider'
-import YearSelect from '../Selects/YearSelect'
+import YearSelect from '../Selects/Calendar/YearSelect'
 import DaysList from '../Lists/DaysList/DaysList';
 import NameDaysBox from '../Box/NameDaysBox/NameDaysBox';
+import { Context } from "../../";
 import moment from 'moment';
 
 import './CalendarStyle.css'
+import ChangeCalendarViewSelect from '../Selects/Calendar/ChangeCalendarViewSelect';
+import DaysWeekList from '../Lists/DaysList/DaysWeekList';
 
 const Calendar = () => {
     moment.updateLocale('en', { week: { dow: 1 } })
@@ -13,9 +16,13 @@ const Calendar = () => {
     const [classBoxDay, setClassBoxDay] = useState('days_list_dl')
     const [classBoxNameDay, setClassBoxNameDay] = useState('name_day_b')
     const [classHoverDay, setHoverDay] = useState('day_box_db ')
+    const [nameDayType, setNameDayType] = useState(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'])
+    const [nowType, setNowType] = useState('month')
+    const { store } = useContext(Context)
 
     const [nowMoment, setNowMoment] = useState(moment())
     const startDay = nowMoment.clone().startOf('month').startOf('week')
+    console.log(nowMoment.clone().endOf('week'))
     const currentDay = moment()
     // const endDay = moment().endOf('month').endOf('week')
     // const totallDay = 42
@@ -35,6 +42,11 @@ const Calendar = () => {
         setNowMoment(prev => prev.clone().set('year', year))
     }
 
+    // useEffect(() => {
+    //     const calIds = 
+    //     const aboba = await store.getEvents();
+    // }, [store])
+
     return (
         <div className='calendar_box_c'>
             <div className={classSeason}>
@@ -42,9 +54,15 @@ const Calendar = () => {
                     setClassBoxNameDay={setClassBoxNameDay} month={nowMoment.format("MMMM")}
                     lastMonth={lastMonth} nextMont={nextMont} setHoverDay={setHoverDay} />
                 <YearSelect nowYear={nowMoment.format("YYYY")} selectYear={selectYear} />
+                <ChangeCalendarViewSelect nowType={nowType} setNowType={setNowType} setNameDayType={setNameDayType} nowMoment={nowMoment} />
             </div>
-            <NameDaysBox classBoxNameDay={classBoxNameDay} />
-            <DaysList classBoxDay={classBoxDay} daysArray={daysArray} classHoverDay={classHoverDay} month={nowMoment.format("MM")} />
+            <NameDaysBox classBoxNameDay={classBoxNameDay} nameDayType={nameDayType} />
+            {nowType === 'month' ?
+                <DaysList classBoxDay={classBoxDay} daysArray={daysArray} classHoverDay={classHoverDay} month={nowMoment.format("MM")} />
+                : nowType === 'week' ?
+                    <DaysWeekList classBoxDay={classBoxDay} daysArray={daysArray} classHoverDay={classHoverDay} month={nowMoment.format("MM")} />
+                    :
+                    ''}
         </div>
 
     )

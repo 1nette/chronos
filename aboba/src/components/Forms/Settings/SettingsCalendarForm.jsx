@@ -22,10 +22,10 @@ const SettingsCalendarForm = () => {
     const [isAutor, setIsAutor] = useState('')
     const [error, setError] = useState('')
 
+    const { store } = useContext(Context)
+
     const [isDropdownShownCals, setisDropdownShownCals] = useState(false);
     const idUs = toJS(store.user.id)
-    
-    const { store } = useContext(Context)
 
     useEffect(() => {
         async function getCalendars() {
@@ -101,9 +101,10 @@ const SettingsCalendarForm = () => {
                     <div className='head_sc'>
 
                     </div> :
-                    idUs !== isAutor ?
+                    idUs.toString() !== isAutor.toString() ?
                         < div className='row_f_sc'>
                             <button className='button_del_sc' onClick={removeCal}>Leave the calendar</button>
+                            {console.log(idUs, isAutor)}
                         </div>
                         :
                         <div className='row_f_sc'>

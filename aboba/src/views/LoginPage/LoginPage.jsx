@@ -28,7 +28,7 @@ const LoginPage = () => {
         <div>
             <NavigationBar isUserLogged={false} />
             <form className='auth_page'>
-                <span className='auth_pagetitle'>Log In</span>
+                <span className='auth_pagetitle'>Log In </span>
 
                 <div className='auth_login'>
                     <span className='auth_span'>Email</span>

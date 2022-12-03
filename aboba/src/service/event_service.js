@@ -4,4 +4,8 @@ export default class EventService {
     static async newEvent(title, type, content, data_start, data_end, calendar) {
         return $api.post('/newEvent', { title, type, content, data_start, data_end, calendar })
     }
+
+    static async getEvents(calId) {
+        return $api.post('/getEvent', { calId })
+    }
 }
