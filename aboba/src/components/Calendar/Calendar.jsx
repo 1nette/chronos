@@ -131,7 +131,7 @@ const Calendar = ({ checkEvents }) => {
             <NameDaysBox classBoxNameDay={classBoxNameDay} nextDay={nextDay} lastDay={lastDay}
                 nameDayType={nameDayType} nowType={nowType} lastWeek={lastWeek} nextWeek={nextWeek} />
             {nowType === 'month' ?
-                <DaysList classBoxDay={classBoxDay} daysArray={daysArray} classHoverDay={classHoverDay} month={nowMoment.format("MM")} />
+                <DaysList eventsArray={eventsArray} classBoxDay={classBoxDay} daysArray={daysArray} classHoverDay={classHoverDay} month={nowMoment.format("MM")} />
                 : nowType === 'week' ?
                     <DaysWeekList classBoxDay={classBoxDay} daysArray={daysArray} classHoverDay={classHoverDay} month={nowMoment.format("MM")} />
                     :
