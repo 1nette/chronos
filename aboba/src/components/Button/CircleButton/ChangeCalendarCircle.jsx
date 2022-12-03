@@ -6,7 +6,7 @@ const ChangeCalendarCircle = ({ info }) => {
 
     const showHide = event => {
         let activeCals = localStorage.getItem('active_cals').split(',');
-        let index = activeCals.indexOf(info._id)
+        let index = activeCals.indexOf(info._id);
 
         if (isShown) {
             setIsShown(false);
@@ -18,13 +18,33 @@ const ChangeCalendarCircle = ({ info }) => {
         }
 
         localStorage.setItem('active_cals', activeCals);
-        window.location.reload();
     }
+    // const showHide = event => {
+    //     let activeCals = localStorage.getItem('active_cals');
+
+    //     if (isShown) {
+    //         let activeCals = activeCals.split(',');
+    //         let index = activeCals.indexOf(info._id);
+
+    //         setIsShown(false);
+    //         activeCals.splice(index, 1);
+    //     }
+    //     else {
+    //         if (activeCals === null)
+    //             activeCals = []
+
+    //         setIsShown(true);
+    //         activeCals.push(info._id);
+    //     }
+
+    //     localStorage.setItem('active_cals', activeCals);
+    //     window.location.reload();
+    // }
 
     useEffect(() => {
-        let activeCals = localStorage.getItem('active_cals').split(',');
+        let activeCals = localStorage.getItem('active_cals');
         let index = activeCals.indexOf(info._id);
-        if (index === -1) {
+        if(index === -1) {
             setIsShown(false);
         }
     }, [])

@@ -46,23 +46,25 @@ const Calendar = () => {
     useEffect(() => {
         async function getEvents() {
             const aboba = localStorage.getItem("active_cals")
-            const calIds = aboba.slice(1).split(',')
-            let events = (await store.getEvents(calIds[0])).data.events;
-            for (let i = 1; i < calIds.length; i++) {
-                events = events.concat((await store.getEvents(calIds[i])).data.events);
-            }
-
-            let array = [0];
-            events.forEach(event => {
-                if (event.data_start.slice(5, 7) === nowMoment.format('MM')) {
-                    let startDate = Number(event.data_start.slice(8, 10)), endDate = Number(event.data_end.slice(8, 10));
-                    while (startDate <= endDate) {
-                        array.push(startDate);
-                        startDate++;
-                    }
+            if (aboba !== null) {
+                const calIds = aboba.slice(1).split(',')
+                let events = (await store.getEvents(calIds[0])).data.events;
+                for (let i = 1; i < calIds.length; i++) {
+                    events = events.concat((await store.getEvents(calIds[i])).data.events);
                 }
-            });
-            setEventsArray(array);
+
+                let array = [0];
+                events.forEach(event => {
+                    if (event.data_start.slice(5, 7) === nowMoment.format('MM')) {
+                        let startDate = Number(event.data_start.slice(8, 10)), endDate = Number(event.data_end.slice(8, 10));
+                        while (startDate <= endDate) {
+                            array.push(startDate);
+                            startDate++;
+                        }
+                    }
+                });
+                setEventsArray(array);
+            }
         }
         getEvents()
     }, [nowMoment])
