@@ -6,13 +6,15 @@ const CalendarDto = require('../dtos/calendar-dtos')
 const ApiError = require('../exceptions/api-error')
 
 const { isObjectIdOrHexString } = require('mongoose')
+const uuid = require('uuid')
+const mailService = require('./mail-service')
 
 class CalendarService {
     async newCalendar(title, color, refreshToken) {
         // const creator = await UserModel.findOne({refreshToken})
         const userDto = TokenService.validateRefreshToken(refreshToken)
-        console.log(userDto.id)
-        const calendar = await CalendarModel.create({ title: title, color: color, owner: userDto.id })
+        const inviteLink = uuid.v4()
+        const calendar = await CalendarModel.create({title: title, color: color, owner: userDto.id, inviteLink: inviteLink})
         const calendarDto = new CalendarDto(calendar)
         return { calendar: calendarDto }
     }
@@ -50,7 +52,7 @@ class CalendarService {
 
         return members
     }
-
+    
     async updataCalendar(id, title, color, refreshToken) {
         const userDto = TokenService.validateRefreshToken(refreshToken)
         const calendar = await CalendarModel.findById(id)
@@ -61,6 +63,12 @@ class CalendarService {
             await CalendarModel.updateOne({ _id: id }, { color: color })
 
         }
+    }
+    
+    async addNewMember(id, email, refreshToken){
+        const inviteLink = CalendarModel.findById(id).inviteLink
+        //const response = mailService.sendInvite(email, inviteLink)
+        return inviteLink
     }
 }
 

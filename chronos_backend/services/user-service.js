@@ -5,6 +5,8 @@ const mailservice = require('./mail-service')
 const tokenService = require('./token-service')
 const UserDto = require('../dtos/user-dtos')
 const ApiError = require('../exceptions/api-error')
+const calendarModel = require('../models/calendar-model')
+const calendarService = require('./calendar-service')
 
 class UserService {
     async registration(email, password) {
@@ -72,10 +74,16 @@ class UserService {
         await tokenService.saveToken(userDto.id, tokens.refreshToken)
         return{...tokens, user: userDto}
     }
-
+    
     async getUsers() {
         const users = await UserModel.find()
         return users
+    }
+
+    async acceptInvite(link, refreshToken){
+        const user = tokenService.validateRefreshToken(refreshToken)
+        const calendar = calendarModel.updateOne({inviteLink: link}, {$push: {members: user.id}})
+        return calendarService.getCalendar(refreshToken)
     }
 }
 

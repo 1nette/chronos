@@ -35,14 +35,14 @@ class CalendarController {
         }
     }
 
-    async getMembers(req, res, next){
-        try{
+    async getMembers(req, res, next) {
+        try {
             const { id } = req.body
             const refreshToken = req.cookies.refreshToken
             const members = await CalendarService.getMembers(id, refreshToken)
             console.log(members)
             return res.json(members)
-        } catch(e){
+        } catch (e) {
             console.log(e)
         }
     }
@@ -56,7 +56,16 @@ class CalendarController {
         } catch (e) {
             next(e)
         }
+
+    async addNewMember(req, res, next){
+            try {
+                const { id, email } = req.body
+                const refreshToken = req.cookies.refreshToken
+                const inviteInfo = await CalendarService.addNewMember(id, email.refreshToken)
+            } catch (e) {
+                console.log(e)
+            }
+        }
     }
-}
 
 module.exports = new CalendarController()

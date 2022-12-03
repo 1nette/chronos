@@ -75,6 +75,12 @@ class UserController {
             next(e)
         }
     }
+    async acceptInvite(req, res, next){
+        const inviteLink = req.params.inviteLink
+        const refreshToken = req.cookies.refreshToken
+        const calendars = await UserServices.acceptInvite(inviteLink, refreshToken)
+        return calendars
+    }
 }
 
 module.exports = new UserController()
