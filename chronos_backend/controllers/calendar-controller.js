@@ -51,7 +51,7 @@ class CalendarController {
         try{
             const {id, email} = req.body
             const refreshToken = req.cookies.refreshToken
-            const inviteInfo = 
+            const inviteInfo = await CalendarService.addNewMember(id, email. refreshToken)
         } catch(e){
             console.log(e)
         }

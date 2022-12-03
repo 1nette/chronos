@@ -24,5 +24,6 @@ router.get('/getEvent', EventController.getEvents)
 router.delete('/removeEvent', EventController.removeEvent)
 router.post('/updEvent', EventController.updEvent)
 router.get('/getMembers', CalendarController.getMembers)
+router.get('/accept/:link', userController.acceptInvite)
 
 module.exports = router

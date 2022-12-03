@@ -4,6 +4,7 @@ const UserModel = require('../models/user-model')
 const CalendarDto = require('../dtos/calendar-dtos')
 const { isObjectIdOrHexString } = require('mongoose')
 const uuid = require('uuid')
+const mailService = require('./mail-service')
 
 class CalendarService {
     async newCalendar(title, color, refreshToken){
@@ -51,6 +52,12 @@ class CalendarService {
         
         return members
     }
+    async addNewMember(id, email, refreshToken){
+        const inviteLink = CalendarModel.findById(id).inviteLink
+        //const response = mailService.sendInvite(email, inviteLink)
+        return inviteLink
+    }
+
 }
 
 module.exports = new CalendarService()
