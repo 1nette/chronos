@@ -52,10 +52,14 @@ class CalendarService {
         
         return members
     }
-    async addNewMember(id, email, refreshToken){
-        const inviteLink = CalendarModel.findById(id).inviteLink
+    async addNewMember(id){
+        const inviteLink = await CalendarModel.findById(id).inviteLink
         //const response = mailService.sendInvite(email, inviteLink)
         return inviteLink
+    }
+    async deleteMember(id, login){
+        const member = await CalendarModel.updateOne({_id: id}, {pull: {members: login}})
+        return member
     }
 
 }

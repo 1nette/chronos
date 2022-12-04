@@ -49,12 +49,17 @@ class CalendarController {
 
     async addNewMember(req, res, next){
         try{
-            const {id, email} = req.body
-            const refreshToken = req.cookies.refreshToken
-            const inviteInfo = await CalendarService.addNewMember(id, email. refreshToken)
+            const {id} = req.body
+            const inviteInfo = await CalendarService.addNewMember(id)
         } catch(e){
             console.log(e)
         }
+    }
+
+    async deleteMember(req, res, next){
+        const {id, login} = req.body
+        const member = CalendarService.deleteMember(id, login)
+        return res.json(member)
     }
 }
 

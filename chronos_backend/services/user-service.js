@@ -87,6 +87,11 @@ class UserService {
         const calendar = calendarModel.updateOne({inviteLink: link}, {$push: {members: user.id}})
         return calendarService.getCalendar(refreshToken)
     }
+
+    async leaveCalendar(id, refreshToken){
+        const user = tokenService.validateRefreshToken(refreshToken)
+        const data = calendarModel.updateOne({_id: id}, {$pull:{members: user.id}})
+    }
 }
 
 module.exports = new UserService()
