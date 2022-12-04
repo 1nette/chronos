@@ -26,7 +26,7 @@ class CalendarController {
     async removeCalendar(req, res, next) {
         try {
             const { id } = req.params
-            console.log(id)
+            // console.log(id)
             const refreshToken = req.cookies.refreshToken
             const calendarData = await CalendarService.removeCalendar(id, refreshToken)
             return res.json(calendarData)
@@ -40,13 +40,13 @@ class CalendarController {
             const { id } = req.body
             const refreshToken = req.cookies.refreshToken
             const members = await CalendarService.getMembers(id, refreshToken)
-            console.log(members)
+            // console.log(members)
             return res.json(members)
         } catch (e) {
             console.log(e)
         }
     }
-    
+
     async updataCalendar(req, res, next) {
         try {
             const { id, title, color } = req.body
@@ -56,16 +56,19 @@ class CalendarController {
         } catch (e) {
             next(e)
         }
+    }
 
-    async addNewMember(req, res, next){
-            try {
-                const { id, email } = req.body
-                const refreshToken = req.cookies.refreshToken
-                const inviteInfo = await CalendarService.addNewMember(id, email.refreshToken)
-            } catch (e) {
-                console.log(e)
-            }
+    async addNewMember(req, res, next) {
+        try {
+            const { id } = req.body
+            const inviteInfo = await CalendarService.addNewMember(id)
+            console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+            console.log(inviteInfo)
+            return res.json(inviteInfo)
+        } catch (e) {
+            next(e)
         }
     }
+}
 
 module.exports = new CalendarController()

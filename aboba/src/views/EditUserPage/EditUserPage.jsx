@@ -1,9 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Context } from "../../";
 import NavigationBar from '../../components/Navigation/NavigationBar';
 
 import '../LoginPage/LoginPageStyle.css'
 
 const EditUserPage = () => {
+    const { store } = useContext(Context)
+    let navigate = useNavigate();
+    useEffect(() => {
+        if (store.isAuth === false)
+            navigate('/');
+
+    }, [store])
     const [/*login, */setLogin] = useState([]);
     const [/*email, */setEmail] = useState([]);
     const [error, setError] = useState('');

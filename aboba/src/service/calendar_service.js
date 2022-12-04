@@ -15,4 +15,8 @@ export default class CalendarService {
     static async remCalendar(id) {
         return $api.delete(`/removeCalendar/${id}`)
     }
+
+    static async newLinkCal(id) {
+        return $api.post('/addNewMember', {id})
+    }
 }

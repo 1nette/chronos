@@ -20,7 +20,7 @@ const Calendar = ({ checkEvents }) => {
     const [classHoverDay, setHoverDay] = useState('day_box_db ')
     const [nameDayType, setNameDayType] = useState(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'])
     const [nowType, setNowType] = useState('month')
-    const [eventsArray, setEventsArray] = useState([])
+    const [eventsArray, setEventsArray] = useState([{ data_start: '00000000000000' }])
 
     const [nowMoment, setNowMoment] = useState(moment())
     const startDay = nowMoment.clone().startOf('month').startOf('week')
@@ -92,8 +92,40 @@ const Calendar = ({ checkEvents }) => {
                 default: break;
             }
         }
+
+        function getDates(startDate, stopDate) {
+            var dateArray = [];
+            var currentDate = moment(startDate);
+            var stopDate = moment(stopDate);
+            while (currentDate <= stopDate) {
+                dateArray.push(moment(currentDate).format('YYYY-MM-DD'))
+                currentDate = moment(currentDate).add(1, 'days');
+            }
+            return dateArray;
+        }
+
+
+
+        ///////// 
+        Date.prototype.addDays = function (days) {
+            var date = new Date(this.valueOf());
+            date.setDate(date.getDate() + days);
+            return date;
+        }
+
+        function getDates(startDate, stopDate) {
+            var dateArray = new Array();
+            var currentDate = startDate;
+            while (currentDate <= stopDate) {
+                dateArray.push(new Date(currentDate));
+                currentDate = currentDate.addDays(1);
+            }
+            return dateArray;
+        }
+        ////////////
         async function getEvents() {
             const aboba = localStorage.getItem("active_cals")
+            var dateArray = new Array();
             if (aboba !== null && aboba !== '') {
                 const calIds = aboba.slice(1).split(',')
                 let events = (await store.getEvents(calIds[0])).data.events;
@@ -101,17 +133,40 @@ const Calendar = ({ checkEvents }) => {
                     events = events.concat((await store.getEvents(calIds[i])).data.events);
                 }
 
-                let array = [0];
+                let dateArray = []
+                // console.log(events)
                 events.forEach(event => {
-                    if (event.data_start.slice(5, 7) === nowMoment.format('MM')) {
-                        let startDate = Number(event.data_start.slice(8, 10)), endDate = Number(event.data_end.slice(8, 10));
-                        while (startDate <= endDate) {
-                            array.push(startDate);
-                            startDate++;
-                        }
+                    console.log(event)
+                    var currentDate = new Date(event.data_start);
+                    var stopDate = new Date(event.data_end)
+                    // console.log(event.end_date)
+                    while (currentDate <= stopDate) {
+                        console.log('aboba')
+                        dateArray.push(new Date(currentDate));
+                        currentDate.setDate(currentDate.getDate()+1)
                     }
+                    console.log(dateArray)
+                    //console.log(event.data_start.slice(0, 10))
+                    //console.log(event.data_end)
+                    //date_array = getDates(Date.parse(event.date_start), Date.parse(event.date_end))
+                    // if (event.data_start.slice(5, 7) === nowMoment.format('MM')) {
+                    //     let startDate = Number(event.data_start.slice(8, 10)), endDate = Number(event.data_end.slice(8, 10));
+                    //     let i = 0
+                    //     while (startDate <= endDate) {
+                    //         event.data_start = `2022-12-${startDate}T00:00:00.000Z`
+                    //         console.log(event.data_start)
+                    //         array.push(event)
+                    //         i++
+
+                    //         // array.push(startDate);
+                    //         startDate++;
+                    //     }
+                    // }
                 });
-                setEventsArray(array);
+
+                //const date_array = await getDaysArray(events[0].date_start, events[0].date_end)
+                console.log(dateArray)
+                setEventsArray(dateArray);
             }
             else
                 setEventsArray([])

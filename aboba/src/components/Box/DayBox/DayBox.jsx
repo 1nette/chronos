@@ -15,15 +15,19 @@ const DayBox = ({ eventsArray, dayItem, classHoverDay, month }) => {
     // const thisDaysEvents = ['aboba', 'aboba', 'aboba']
 
     const newEvent = () => {
-        if (showFormEvent !== 'overlay active')
-            setShowFormEvent('overlay active')
+        if (eventsNumber === 0)
+            if (showFormEvent !== 'overlay active')
+                setShowFormEvent('overlay active')
     }
 
     useEffect(() => {
         let numb = 0;
+        // console.log(eventsArray)
         eventsArray.forEach(event => {
-            if (Number(dayItem.format('D')) === event) {
-                numb++;
+            if (event !== 0) {
+                if (Number(dayItem.format('D')) === Number(event.data_start)) {
+                    numb++;
+                }
             }
         });
         setEventsNumber(numb);

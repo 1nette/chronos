@@ -14,15 +14,17 @@ class CalendarService {
         // const creator = await UserModel.findOne({refreshToken})
         const userDto = TokenService.validateRefreshToken(refreshToken)
         const inviteLink = uuid.v4()
+        console.log("dedednkendkendkendkn")
+        console.log(inviteLink)
         const calendar = await CalendarModel.create({title: title, color: color, owner: userDto.id, inviteLink: inviteLink})
         const calendarDto = new CalendarDto(calendar)
         return { calendar: calendarDto }
     }
     async removeCalendar(id, refreshToken) {
         const userDto = TokenService.validateRefreshToken(refreshToken)
-        console.log(id)
+        // console.log(id)
         const candidate = await CalendarModel.findById(id)
-        console.log(candidate)
+        // console.log(candidate)
         // if(candidate.owner != userDto.id){
         //     return new Error("U are not owner")
         // }
@@ -40,7 +42,7 @@ class CalendarService {
         const owner = await UserModel.findById(userDto.id)
         const members_id = await CalendarModel.find({ _id: id }).select('members')
 
-        console.log(members_id.members)
+        // console.log(members_id.members)
         //console.log(members_id)
         let members = []
         members.push(owner)
@@ -65,8 +67,12 @@ class CalendarService {
         }
     }
     
-    async addNewMember(id, email, refreshToken){
-        const inviteLink = CalendarModel.findById(id).inviteLink
+    async addNewMember(id){
+        const inviteLink = await CalendarModel.find({_id:id})
+        // console.log(id)
+        console.log(await CalendarModel.find({_id:id}))
+        console.log("ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd")
+        console.log(inviteLink.inviteLink)
         //const response = mailService.sendInvite(email, inviteLink)
         return inviteLink
     }

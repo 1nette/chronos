@@ -15,16 +15,19 @@ router.post('/logout', userController.logout)
 router.get('/activation/:link', userController.activation)
 router.get('/refresh', userController.refresh)
 // router.get('/getMembers', authMiddleware,userController.getUsers)
-router.post('/newCalendar', CalendarController.newCalendar)
+router.post('/newCalendar', CalendarController.newCalendar)//----------------------------------*
 router.post('/updataCalendar', CalendarController.updataCalendar)//----------------------------*
 router.get('/getCalendar', CalendarController.getCalendar)//-----------------------------------*
 router.delete('/removeCalendar/:id', CalendarController.removeCalendar) //---------------------*
 
-router.post('/newEvent', EventController.newEvent)
-router.get('/getEvent/:id', EventController.getEvents)
+router.post('/newEvent', EventController.newEvent)//-------------------------------------------*
+router.get('/getEvent/:id', EventController.getEvents)//---------------------------------------*
+
+
 router.delete('/removeEvent', EventController.removeEvent)
 router.post('/updEvent', EventController.updEvent)
 router.get('/getMembers', CalendarController.getMembers)
-router.get('/accept/:link', userController.acceptInvite)
+router.get('/accept/:link', userController.acceptInvite)//-------------------------------------
+router.post('/addNewMember', CalendarController.addNewMember)//--------------------------------*
 
 module.exports = router

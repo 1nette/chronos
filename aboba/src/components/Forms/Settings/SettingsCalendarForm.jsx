@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Context } from "../../../";
 import { toJS } from 'mobx';
+import $api from '../../../http/index'
 
 import calendarImg from "../../..//assets/calendar/calendar_dark.png"
 import ArrowDown from "../../Button/Arrows/ArrowDown"
@@ -47,8 +48,6 @@ const SettingsCalendarForm = () => {
         event.preventDefault();
         for (let value of calendarsArray) {
             if (value.title === newName) {
-                console.log('sasasa')
-                console.log(value._id)
                 await store.removeCalendar(value._id);
                 setCalendarsArray(await store.getCalendars())
                 setNewName('')
@@ -58,8 +57,10 @@ const SettingsCalendarForm = () => {
     }
     const linkShare = async event => {
         event.preventDefault();
-        //запрос на генерацию ссылки для  "пожелиться календарем"
-        setShareLink('wojowjdwjdo')
+        const link = await store.newLinkCal(idCal)
+    
+        const rezLink= 'http://chronos/shareCalendar/'+link.data[0].inviteLink
+        setShareLink(rezLink)
     }
     const dellPeople = async event => {
         event.preventDefault();
@@ -104,7 +105,6 @@ const SettingsCalendarForm = () => {
                     idUs.toString() !== isAutor.toString() ?
                         < div className='row_f_sc'>
                             <button className='button_del_sc' onClick={removeCal}>Leave the calendar</button>
-                            {console.log(idUs, isAutor)}
                         </div>
                         :
                         <div className='row_f_sc'>
@@ -165,9 +165,6 @@ const SettingsCalendarForm = () => {
                         <PeopleList idUs={idUs} isAutor={isAutor} dellPeople={dellPeople} />
                     </div>
                 </div>
-
-
-
             </form >
         </div >
     )

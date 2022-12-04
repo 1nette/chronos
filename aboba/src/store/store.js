@@ -59,7 +59,7 @@ export default class Store {
         try {
             await AuthService.logout()
             localStorage.removeItem('token')
-            localStorage.removeItem('active_cals')
+            localStorage.setItem('active_cals', '')
             this.setAuth(false)
             this.setUser({})
         } catch (e) {
@@ -127,6 +127,14 @@ export default class Store {
     async getEvents(calId) {
         try {
             return await EventService.getEvents(calId)
+        } catch (e) {
+            console.log(e.response?.data?.message)
+        }
+    }
+
+    async newLinkCal(calId) {
+        try {
+            return await CalService.newLinkCal(calId)
         } catch (e) {
             console.log(e.response?.data?.message)
         }

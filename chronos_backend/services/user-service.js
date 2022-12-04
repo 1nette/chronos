@@ -29,7 +29,7 @@ class UserService {
 
     async activation(activationLink){
         const user = await UserModel.findOne({activationLink})
-        console.log(user)
+        // console.log(user)
         if(!user) {
             throw ApiError.BadRequest('Shiit мэнчик, cringe')
         }
