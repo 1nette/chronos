@@ -1,15 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
+import { Context } from "../..";
 import { useNavigate } from 'react-router-dom';
 
 import NavigationBar from '../../components/Navigation/NavigationBar';
 
 import './ShareLinks.css'
 const ShareLinkCal = () => {
+    const { store } = useContext(Context)
     let navigate = useNavigate();
     const accept = () => {
         navigate('/home');
     }
     useEffect(() => {
+        // const dataAutor = await store.
 
     }, [])
     return (

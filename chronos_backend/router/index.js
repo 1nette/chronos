@@ -26,8 +26,9 @@ router.get('/getEvent/:id', EventController.getEvents)//------------------------
 
 router.delete('/removeEvent', EventController.removeEvent)
 router.post('/updEvent', EventController.updEvent)
-router.get('/getMembers', CalendarController.getMembers)
-router.get('/accept/:link', userController.acceptInvite)//-------------------------------------
+router.get('/getMembers', CalendarController.getMembers)//-------------------------------------+
+router.get('/activesharelink/', CalendarController.getMembers)//-------------------------------------+
+router.get('/accept/:link', userController.acceptInvite)//-------------------------------------+
 router.post('/addNewMember', CalendarController.addNewMember)//--------------------------------*
 
 module.exports = router

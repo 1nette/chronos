@@ -139,4 +139,18 @@ export default class Store {
             console.log(e.response?.data?.message)
         }
     }
+    async getPeopleCal(calId) {
+        try {
+            return await CalService.getPeopleCal(calId)
+        } catch (e) {
+            console.log(e.response?.data?.message)
+        }
+    }
+    async dataAutorShare(link) {
+        try {
+            return await CalService.dataAutorShare(link)
+        } catch (e) {
+            console.log(e.response?.data?.message)
+        }
+    }
 }

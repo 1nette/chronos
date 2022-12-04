@@ -14,7 +14,7 @@ const HomePage = () => {
     let navigate = useNavigate();
     useEffect(() => {
         if (store.isAuth === false)
-            navigate('/');
+            navigate('/login');
 
     }, [store])
     // useEffect(() => {

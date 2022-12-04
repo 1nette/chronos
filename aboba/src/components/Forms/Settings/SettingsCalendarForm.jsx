@@ -13,6 +13,7 @@ import PeopleList from '../../Lists/PeopleList/PeopleList';
 import './SettingsCalendarFromStyle.css'
 
 const SettingsCalendarForm = () => {
+    const { store } = useContext(Context)
 
     const [calName, setCalName] = useState('');
     const [newName, setNewName] = useState('');
@@ -22,8 +23,9 @@ const SettingsCalendarForm = () => {
     const [shareLink, setShareLink] = useState('')
     const [isAutor, setIsAutor] = useState('')
     const [error, setError] = useState('')
+    const [peopleCal, setPeopleCal] = useState([])
 
-    const { store } = useContext(Context)
+
 
     const [isDropdownShownCals, setisDropdownShownCals] = useState(false);
     const idUs = toJS(store.user.id)
@@ -58,8 +60,8 @@ const SettingsCalendarForm = () => {
     const linkShare = async event => {
         event.preventDefault();
         const link = await store.newLinkCal(idCal)
-    
-        const rezLink= 'http://chronos/shareCalendar/'+link.data[0].inviteLink
+        console.log(link)
+        const rezLink = 'http://localhost:3000/activesharelink/' + link.data[0].inviteLink
         setShareLink(rezLink)
     }
     const dellPeople = async event => {
@@ -89,8 +91,14 @@ const SettingsCalendarForm = () => {
             setCalendarsArray(await store.getCalendars())
             //тут должна біть проверка  является ли данній пользовтель атором єтого календаря 
         }
+        async function getPropleCal() {
+            setPeopleCal(await store.getPeopleCal(idCal))
+        }
+
         getCalendars()
-    }, [store])
+        getPropleCal()
+        // console.log(peopleCal)
+    }, [store, idCal])
 
     return (
         <div className='row_sc'>
