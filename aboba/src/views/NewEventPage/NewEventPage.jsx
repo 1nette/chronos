@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Context } from "../../";
+import React from 'react';
+// import { useNavigate } from 'react-router-dom';
+// import { Context } from "../../";
 import NewEventsForm from '../../components/Forms/Event/NewEventsForm';
 import NavigationBar from '../../components/Navigation/NavigationBar';
 

@@ -21,14 +21,18 @@ router.get('/getCalendar', CalendarController.getCalendar)//--------------------
 router.delete('/removeCalendar/:id', CalendarController.removeCalendar) //---------------------*
 
 router.post('/newEvent', EventController.newEvent)//-------------------------------------------*
-router.get('/getEvent/:id', EventController.getEvents)//---------------------------------------*
+router.get('/getEvent/:id', EventController.getEvents)//---------------------------------------+
 
 
 router.delete('/removeEvent', EventController.removeEvent)
 router.post('/updEvent', EventController.updEvent)
-router.get('/getMembers', CalendarController.getMembers)//-------------------------------------+
-router.get('/activesharelink/', CalendarController.getMembers)//-------------------------------------+
-router.get('/accept/:link', userController.acceptInvite)//-------------------------------------+
+router.get('/getMembers/:id', CalendarController.getMembers)//-------------------------------------+
+
+router.get('/getDataMemberLink/:link', CalendarController.getDataMembers)//--------------------*
+router.post('/accept', userController.acceptInvite)//------------------------------------------*
 router.post('/addNewMember', CalendarController.addNewMember)//--------------------------------*
+
+router.post('/leaveCalendar', userController.leaveCalendar)
+router.post('/deleteMember', calendarController.deleteMember)
 
 module.exports = router

@@ -5,7 +5,7 @@ import { Context } from "../../";
 
 import './LoginPageStyle.css'
 
-const LoginPage = () => {
+const LoginPage = ({acceptShare}) => {
     const [email, setEmail] = useState([]);
     const [password, setPassword] = useState([]);
     const [error, setError] = useState('');

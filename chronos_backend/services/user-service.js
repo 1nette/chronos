@@ -82,7 +82,13 @@ class UserService {
 
     async acceptInvite(link, refreshToken){
         const user = tokenService.validateRefreshToken(refreshToken)
-        const calendar = calendarModel.updateOne({inviteLink: link}, {$push: {members: user.id}})
+        const calendar = await calendarModel.updateOne({inviteLink: link}, {$push: {members: user.id}})
+        // await calendar.save()
+        return calendarService.getCalendar(refreshToken)
+    }
+    async leaveCalendar(id, refreshToken){
+        const user = tokenService.validateRefreshToken(refreshToken)
+        const data = calendarModel.updateOne({_id: id}, {$pull:{members: user.id}})
         return calendarService.getCalendar(refreshToken)
     }
 }

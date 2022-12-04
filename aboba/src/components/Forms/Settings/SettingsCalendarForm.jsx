@@ -87,17 +87,22 @@ const SettingsCalendarForm = () => {
     }
     useEffect(() => {
         async function getCalendars() {
-
             setCalendarsArray(await store.getCalendars())
             //тут должна біть проверка  является ли данній пользовтель атором єтого календаря 
         }
         async function getPropleCal() {
-            setPeopleCal(await store.getPeopleCal(idCal))
+             if (idCal){
+                const temp = await store.getPeopleCal(idCal)
+                console.log(temp.data)
+                setPeopleCal(temp.data)
+             }
+             console.log(calendarsArray)
+   
         }
 
         getCalendars()
         getPropleCal()
-        // console.log(peopleCal)
+    
     }, [store, idCal])
 
     return (
@@ -170,7 +175,7 @@ const SettingsCalendarForm = () => {
                     </div>
                     <div className='box_peoples_sc'>
                         <h2 className='inf_esf'>People</h2>
-                        <PeopleList idUs={idUs} isAutor={isAutor} dellPeople={dellPeople} />
+                    <PeopleList idUs={idUs} isAutor={isAutor} dellPeople={dellPeople} peopleCal={peopleCal} />
                     </div>
                 </div>
             </form >

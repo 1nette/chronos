@@ -139,6 +139,13 @@ export default class Store {
             console.log(e.response?.data?.message)
         }
     }
+    async acceptLinkCal(link) {
+        try {
+            return await CalService.acceptLinkCal(link)
+        } catch (e) {
+            console.log(e.response?.data?.message)
+        }
+    }
     async getPeopleCal(calId) {
         try {
             return await CalService.getPeopleCal(calId)

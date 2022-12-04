@@ -37,11 +37,22 @@ class CalendarController {
 
     async getMembers(req, res, next) {
         try {
-            const { id } = req.body
+            const { id } = req.params
             const refreshToken = req.cookies.refreshToken
             const members = await CalendarService.getMembers(id, refreshToken)
-            // console.log(members)
             return res.json(members)
+        } catch (e) {members
+            console.log(e)
+        }
+    }
+
+    async getDataMembers(req, res, next) {
+        try {
+            const { link } = req.params
+            const members = await CalendarService.getDataMembers(link)
+            // console.log(link)
+            return res.json(members)
+
         } catch (e) {
             console.log(e)
         }
@@ -62,12 +73,15 @@ class CalendarController {
         try {
             const { id } = req.body
             const inviteInfo = await CalendarService.addNewMember(id)
-            console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-            console.log(inviteInfo)
             return res.json(inviteInfo)
         } catch (e) {
             next(e)
         }
+    }
+    async deleteMember(req, res, next){
+        const {id, login} = req.body
+        const member = CalendarService.deleteMember(id, login)
+        return res.json(member)
     }
 }
 

@@ -19,12 +19,16 @@ export default class CalendarService {
     static async newLinkCal(id) {
         return $api.post('/addNewMember', { id })
     }
+    
+    static async acceptLinkCal(link) {
+        return $api.post('/accept',{link})
+    }
 
     static async getPeopleCal(id) {
-        return $api.get('/getMembers', { id })
+        return $api.get(`/getMembers/${id}`)
     }
 
     static async dataAutorShare(link) {
-        return $api.get('/getDataMemberLink', { link })
+        return $api.get(`/getDataMemberLink/${link}`)
     }
 }

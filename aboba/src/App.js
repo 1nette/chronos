@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Context } from '.';
@@ -16,9 +16,11 @@ import './style.css'
 
 const { Routes, Route } = require('react-router-dom');
 
+
 function App() {
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
   const { store } = useContext(Context)
+  const [ acceptShare , setAcceptShare] =useState('')
   useEffect(() => {
     if (localStorage.getItem('token')) {
       store.checkAuth()
@@ -32,15 +34,15 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path='/' element={localStorage.getItem('token') == null ? <LoginPage /> : <HomePage />} />
+        <Route path='/' element={localStorage.getItem('token') == null ? <LoginPage /> : <HomePage acceptShare={acceptShare} />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/signup' element={<SignupPage />} />
-        <Route path='/home' element={<HomePage />} />
+        <Route path='/home' element={<HomePage acceptShare={acceptShare} />} />
         <Route path='/editprofile' element={<EditUserPage />} />
         <Route path='/newevent' element={<NewEventPage />} />
         <Route path='/settingscalendar' element={<SettingsCalendarsPage />} />
         <Route path='/reset_password' element={<ResetPasswordPage />} />
-        <Route path='/activesharelink/:link' element={<ShareLinkCal />} />
+        <Route path='/activesharelink/:link' element={<ShareLinkCal setAcceptShare={setAcceptShare} />} />
       </Routes>
     </div>
   );

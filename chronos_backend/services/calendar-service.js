@@ -8,14 +8,13 @@ const ApiError = require('../exceptions/api-error')
 const { isObjectIdOrHexString } = require('mongoose')
 const uuid = require('uuid')
 const mailService = require('./mail-service')
+const { Result } = require('express-validator')
 
 class CalendarService {
     async newCalendar(title, color, refreshToken) {
         // const creator = await UserModel.findOne({refreshToken})
         const userDto = TokenService.validateRefreshToken(refreshToken)
         const inviteLink = uuid.v4()
-        console.log("dedednkendkendkendkn")
-        console.log(inviteLink)
         const calendar = await CalendarModel.create({title: title, color: color, owner: userDto.id, inviteLink: inviteLink})
         const calendarDto = new CalendarDto(calendar)
         return { calendar: calendarDto }
@@ -33,26 +32,33 @@ class CalendarService {
     }
     async getCalendar(refreshToken) {
         const userDto = TokenService.validateRefreshToken(refreshToken)
-        const calendar = await CalendarModel.find({ "owner": userDto.id })
-        return calendar
+        const calendar = await CalendarModel.find({ owner: userDto.id })
+        const chld = await CalendarModel.find({members: userDto.id})
+        chld.forEach(element =>{
+            calendar.push(element)
+        })
+        return calendar 
     }
 
     async getMembers(id, refreshToken) {
         const userDto = TokenService.validateRefreshToken(refreshToken)
-        const owner = await UserModel.findById(userDto.id)
-        const members_id = await CalendarModel.find({ _id: id }).select('members')
-
-        // console.log(members_id.members)
-        //console.log(members_id)
-        let members = []
-        members.push(owner)
-
-        for (let i = 0; i < members_id.length; i++) {
-            const candidate = await UserModel.findById(members_id[i].members)
-            members.push(candidate)
-        };
-
-        return members
+        const owner_id = await CalendarModel.findById(id).select('owner -_id')
+        const owner = await UserModel.findById(owner_id.owner)
+        const members_id = await CalendarModel.find({ _id: id }).select('members -_id')
+        const resp = []
+        resp.push(owner)
+        for(const element of members_id){
+            const aboba = await UserModel.findById(element.members)
+            resp.push(aboba)
+        }
+        return resp
+    }
+    
+    async getDataMembers(link) {
+        const cal_data = await CalendarModel.find({ inviteLink: link })
+        const user_data = await UserModel.find({ _id: cal_data[0].owner.toString() })
+        const rezult = user_data[0].email +'/'+cal_data[0].title
+        return rezult
     }
     
     async updataCalendar(id, title, color, refreshToken) {
@@ -69,12 +75,11 @@ class CalendarService {
     
     async addNewMember(id){
         const inviteLink = await CalendarModel.find({_id:id})
-        // console.log(id)
-        console.log(await CalendarModel.find({_id:id}))
-        console.log("ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd")
-        console.log(inviteLink.inviteLink)
-        //const response = mailService.sendInvite(email, inviteLink)
         return inviteLink
+    }
+    async deleteMember(id, login){
+        const member = await CalendarModel.updateOne({_id: id}, {pull: {members: login}})
+        return member
     }
 }
 

@@ -8,15 +8,27 @@ import NavigationBar from '../../components/Navigation/NavigationBar';
 import SettingsButton from '../../components/Button/SettingsButton/SettingsButton'
 import './HomePageStyle.css'
 
-const HomePage = () => {
+const HomePage = (acceptShare) => {
     const [checkEvents, setCheckEvents] = useState('')
     const { store } = useContext(Context)
+    const [calendarsArray, setCalendarsArray] = useState([]);
     let navigate = useNavigate();
     useEffect(() => {
-        if (store.isAuth === false)
+        if (!localStorage.getItem('token'))
             navigate('/login');
-
-    }, [store])
+        async function activeShare(){
+            if(acceptShare){
+                console.log(acceptShare.acceptShare)
+                await store.acceptLinkCal(acceptShare.acceptShare)
+            }
+        }
+        async function getCalendars() {
+            const aboba = await store.getCalendars();
+            setCalendarsArray(aboba);
+        }
+        activeShare()
+        getCalendars()
+    }, [navigate,acceptShare, store])
     // useEffect(() => {
     //     if (localStorage.getItem('token')) {
     //       store.checkAuth()
@@ -26,7 +38,7 @@ const HomePage = () => {
         <div className='home_page_hp'>
             <NavigationBar isUserLogged={true} />
             <div className='calendars_box_hp'>
-                <CalendarsList setCheckEvents={setCheckEvents} />
+                <CalendarsList setCheckEvents={setCheckEvents} calendarsArray={calendarsArray} />
                 <Calendar checkEvents={checkEvents} />
             </div>
             <SettingsButton />

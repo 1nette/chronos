@@ -76,10 +76,17 @@ class UserController {
         }
     }
     async acceptInvite(req, res, next){
-        const inviteLink = req.params.inviteLink
+        const { link } = req.body
         const refreshToken = req.cookies.refreshToken
-        const calendars = await UserServices.acceptInvite(inviteLink, refreshToken)
+        console.log(link)
+        const calendars = await UserServices.acceptInvite(link, refreshToken)
         return calendars
+    }
+    async leaveCalendar(req, res, next){
+        const {id} = req.body
+        const refreshToken = req.cookies.refreshToken
+        const data = UserServices.leaveCalendar(id, refreshToken)
+        return res.json(data)
     }
 }
 
