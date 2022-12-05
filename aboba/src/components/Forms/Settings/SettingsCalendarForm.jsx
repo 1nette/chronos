@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Context } from "../../../";
 import { toJS } from 'mobx';
-import $api from '../../../http/index'
+// import $api from '../../../http/index'
 
 import calendarImg from "../../..//assets/calendar/calendar_dark.png"
 import ArrowDown from "../../Button/Arrows/ArrowDown"
@@ -29,14 +29,6 @@ const SettingsCalendarForm = () => {
 
     const [isDropdownShownCals, setisDropdownShownCals] = useState(false);
     const idUs = toJS(store.user.id)
-
-    useEffect(() => {
-        async function getCalendars() {
-            const aboba = await store.getCalendars();
-            setCalendarsArray(aboba)
-        }
-        getCalendars()
-    }, [store])
 
 
     const showDropdown3 = event => {
@@ -85,24 +77,22 @@ const SettingsCalendarForm = () => {
         }
 
     }
+
     useEffect(() => {
         async function getCalendars() {
             setCalendarsArray(await store.getCalendars())
             //тут должна біть проверка  является ли данній пользовтель атором єтого календаря 
         }
         async function getPropleCal() {
-             if (idCal){
+            if (idCal) {
                 const temp = await store.getPeopleCal(idCal)
-                console.log(temp.data)
                 setPeopleCal(temp.data)
-             }
-             console.log(calendarsArray)
-   
+            }
         }
 
         getCalendars()
         getPropleCal()
-    
+
     }, [store, idCal])
 
     return (
@@ -175,7 +165,7 @@ const SettingsCalendarForm = () => {
                     </div>
                     <div className='box_peoples_sc'>
                         <h2 className='inf_esf'>People</h2>
-                    <PeopleList idUs={idUs} isAutor={isAutor} dellPeople={dellPeople} peopleCal={peopleCal} />
+                        <PeopleList idUs={idUs} isAutor={isAutor} dellPeople={dellPeople} peopleCal={peopleCal} />
                     </div>
                 </div>
             </form >

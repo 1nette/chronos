@@ -1,9 +1,9 @@
 import React from 'react';
 import UserCircle from '../../Button/UserButton/UserCircle'
-import PeopleBox from '../../Box/PeopleBox/PeopleBox'
+// import PeopleBox from '../../Box/PeopleBox/PeopleBox'
 import './PeopleListStyle.css'
 
-const PeopleList = ({ idUs, isAutor, dellPeople,peopleCal }) => {
+const PeopleList = ({ idUs, isAutor, /*dellPeople,*/ peopleCal }) => {
 
 
     return (

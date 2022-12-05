@@ -33,6 +33,6 @@ router.post('/accept', userController.acceptInvite)//---------------------------
 router.post('/addNewMember', CalendarController.addNewMember)//--------------------------------*
 
 router.post('/leaveCalendar', userController.leaveCalendar)
-router.post('/deleteMember', calendarController.deleteMember)
+router.post('/deleteMember', CalendarController.deleteMember)
 
 module.exports = router
